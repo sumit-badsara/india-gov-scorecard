@@ -16,10 +16,10 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331;
-  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --tie:#7c8682; --tie-soft:#262c2a; --disc:#3d3417; --disc-ink:#f3dc8a; --disc-line:#5c4f22; color-scheme:dark}}
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --tie:#7c8682; --tie-soft:#262c2a; --disc:#f6e7a6; --disc-ink:#4a3a00; --disc-line:#e3cf78; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331;
-  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --tie:#7c8682; --tie-soft:#262c2a; --disc:#3d3417; --disc-ink:#f3dc8a; --disc-line:#5c4f22; color-scheme:dark}
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --tie:#7c8682; --tie-soft:#262c2a; --disc:#f6e7a6; --disc-ink:#4a3a00; --disc-line:#e3cf78; color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:28px 56px}
 .wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
@@ -266,7 +266,7 @@ const wEl=document.getElementById("weights"),dEl=document.getElementById("dims")
 D.forEach((d,x)=>{
  wEl.insertAdjacentHTML("beforeend",`<label class="w" for="w-${d.k}"><span>${d.n}</span><output id="o-${d.k}"></output><input type="range" id="w-${d.k}" min="0" max="3" step="1"></label>`);
  const rows=d.i.map((r,j)=>{const id=`t-${d.k}-${j}`,term=`Scorecard / ${d.n} / ${r[0]}`.replace(/"/g,"");return `<tr><td class="ind">${r[0]}<br><button class="disc" data-term="${term}" data-title="${term}" aria-controls="${id}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Discuss</button></td><td class="v">${r[1]}</td><td class="v">${r[2]}${r[5]?`<span class="note">${r[5]}</span>`:""}</td><td class="e" id="e-${d.k}-${j}"></td></tr><tr class="thread" id="${id}" hidden><td colspan="4"><div class="gz"></div></td></tr>`}).join("");
- dEl.insertAdjacentHTML("beforeend",`<details class="dim"${x===0?" open":""}><summary><span class="name">${d.n}</span><span class="mini" id="m-${d.k}"></span><span class="sub">${d.s} · ${d.i.length} indicators</span></summary><div class="tbl"><table><thead><tr><th>Indicator</th><th style="color:var(--upa)">UPA 2004–14</th><th style="color:var(--nda)">NDA 2014–26</th><th>Edge</th></tr></thead><tbody>${rows}</tbody></table></div></details>`);
+ dEl.insertAdjacentHTML("beforeend",`<details class="dim" open><summary><span class="name">${d.n}</span><span class="mini" id="m-${d.k}"></span><span class="sub">${d.s} · ${d.i.length} indicators</span></summary><div class="tbl"><table><thead><tr><th>Indicator</th><th style="color:var(--upa)">UPA 2004–14</th><th style="color:var(--nda)">NDA 2014–26</th><th>Edge</th></tr></thead><tbody>${rows}</tbody></table></div></details>`);
 });
 D.forEach(d=>document.getElementById("w-"+d.k).addEventListener("input",e=>{W[d.k]=+e.target.value;render()}));
 document.getElementById("lensRate").onclick=()=>{lens="rate";render()};
