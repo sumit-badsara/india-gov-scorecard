@@ -14,6 +14,14 @@ Every score shows the underlying numbers and links to its sources. The scorecard
 
 `events.html` is a filterable timeline of attacks, global shocks, domestic crises, communal violence, reforms and governance controversies from 1975 to 2026. Each entry shows who was in power, who was mainly responsible, the response, and which scorecard areas it affected. Major reforms carry an evidence rating judged only against their own stated goals.
 
+## Wealth, land & names page
+
+`wealth.html` covers leaders' declared assets (election affidavits via ADR/MyNeta), MP and party finances, criminal cases by party, public land used for leaders' memorials, and how each party names and renames schemes, with the case for and against in each section.
+
+## Opposition & protest page
+
+`opposition.html` checks the charges each party raised in opposition against later court, CAG and regulator findings, lists policy reversals, compares conduct in Parliament, separates foreign-funding findings from allegations, and tabulates how Central and state governments of every party responded to major protests.
+
 ## Data
 
 Figures are as of 30 September 2026, drawn from the World Bank, WITS / UN Comtrade, RBI, PIB, PRS, NCRB, SATP, RSF, Freedom House, V-Dem, Transparency International and other sources listed on the page. Caveats on each indicator are shown inline.
