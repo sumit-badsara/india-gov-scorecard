@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Declared wealth of India's leaders and parties, public land used for leaders' memorials, and who names schemes after whom — from affidavits, ADR reports, RTI replies and court records.">
+<title>Wealth, Land &amp; Names · India Gov Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: report page — section index, then four sections of tables and short findings; party-neutral colours per party */
+:root{
+  --bg:#f6f7f5; --panel:#ffffff; --ink:#1c2321; --ink2:#4d5753; --mute:#7c8682; --line:#dfe3e0; --tie-soft:#eceeed;
+  --upa:#1f7a78; --upa-soft:#d7ecea; --nda:#7a3f8f; --nda-soft:#ecdff0; --oth:#8a6a2f; --oth-soft:#f1e9d8;
+  --disc:#fff3c4; --disc-ink:#6b5200; --disc-line:#ecd98a;
+  --display:"Spectral",Georgia,serif; --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331; --tie-soft:#262c2a;
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --oth:#d0ae6c; --oth-soft:#342b1b;
+  --disc:#f6e7a6; --disc-ink:#4a3a00; --disc-line:#e3cf78; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331; --tie-soft:#262c2a;
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --oth:#d0ae6c; --oth-soft:#342b1b;
+  --disc:#f6e7a6; --disc-ink:#4a3a00; --disc-line:#e3cf78; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:20px 56px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:17px}
+p{margin:0} a{color:inherit}
+.nav{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+.nav a{text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);background:var(--panel)}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nav a:focus-visible,.toc a:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.lede{color:var(--ink2);max-width:68ch}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.toc a{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.toc b{display:block;font-family:var(--display);font-size:16px}
+.toc span{font-size:13px;color:var(--mute)}
+section.s{display:flex;flex-direction:column;gap:14px;scroll-margin-top:16px}
+.s>p,.s .prose{color:var(--ink2);max-width:72ch}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.find{display:flex;flex-direction:column;gap:6px}
+.find b{font-family:var(--display);font-size:17px;font-weight:600;color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+th{text-align:left;font-weight:500;font-size:12px;color:var(--mute);padding:10px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);letter-spacing:.03em;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+td:first-child{color:var(--ink);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.p{font-size:11.5px;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p-inc{background:var(--upa-soft);color:var(--upa)} .p-bjp{background:var(--nda-soft);color:var(--nda)} .p-oth{background:var(--oth-soft);color:var(--oth)}
+.bar{display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.bar i{display:block;height:10px;border-radius:0 3px 3px 0;min-width:2px}
+.note{font-size:12.5px;color:var(--mute)}
+.flag{font-size:11px;font-family:var(--mono);color:var(--mute);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.src{font-size:12px;color:var(--mute)} .src a{color:var(--mute);overflow-wrap:anywhere}
+.disc{font:inherit;font-size:12.5px;font-weight:500;padding:4px 12px;border-radius:999px;border:1px solid var(--disc-line);background:var(--disc);color:var(--disc-ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px;align-self:flex-start}
+.disc[aria-expanded="true"]{background:var(--disc-ink);color:var(--disc)}
+.disc:focus-visible{outline:2px solid var(--disc-ink);outline-offset:2px}
+.gz-note{font-size:12.5px;color:var(--mute);margin:0 0 6px} .gz-note a{color:var(--ink2)}
+.thread-box{border-top:1px dashed var(--line);padding-top:10px}
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;font-size:13.5px;color:var(--ink2)}
+.method b{display:block;color:var(--ink);margin-bottom:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav" aria-label="Site"><a href="./">Scorecard</a><a href="events.html">Events &amp; reforms</a><a href="wealth.html" aria-current="page">Wealth, land &amp; names</a></nav>
+
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <p class="eyebrow">India · public records</p>
+    <h1>Wealth, Land &amp; Names</h1>
+    <p class="lede">What leaders and parties have declared they own, how much public land and money has gone into honouring leaders, and whose names end up on schemes and places. Every figure comes from a sworn affidavit, an audited party filing, an RTI reply, a government statement or a court record, and both major parties are held to the same test.</p>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#assets"><b>Leaders' declared wealth</b><span>Election affidavits, 2014–2026</span></a>
+    <a href="#parties"><b>MPs &amp; party money</b><span>ADR analysis of filings</span></a>
+    <a href="#land"><b>Public land for memorials</b><span>Samadhis, statues, renamed buildings</span></a>
+    <a href="#names"><b>Whose names go on schemes</b><span>RTI counts, renamings, state examples</span></a>
+  </nav>
+
+  <!-- 1 -->
+  <section class="s" id="assets">
+    <h2>Leaders' declared wealth</h2>
+    <p>Candidates must declare their own and their spouse's assets on oath when they file nominations. These are book values (what was paid, or a self-assessed value), not market values, so they understate property. Only people who hold or sought public office are listed.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Leader</th><th>Party</th><th>Earlier</th><th>Latest</th><th>Latest liabilities</th><th>Change</th></tr></thead>
+      <tbody id="assetRows"></tbody>
+    </table></div>
+    <p class="note">Crore = 10 million rupees. Figures are as declared in each affidavit via ADR/MyNeta and may include the spouse's assets. Modi's 2024 affidavit lists no land, house or vehicle; his 2014 and 2019 affidavits listed a share in a Gandhinagar plot. Self-declared criminal cases (2024): Rahul Gandhi 18, Nitin Gadkari 10, P. Chidambaram 4, Amit Shah 3 — declared cases are pending FIRs or charges, not convictions.</p>
+    <div class="panel find">
+      <b>Court cases over leaders' assets (status as of Sep 2026)</b>
+      <div class="tbl" style="border:0"><table>
+        <thead><tr><th>Case</th><th>Party</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>National Herald / Young Indian (Sonia &amp; Rahul Gandhi and others)</td><td><span class="p p-inc">INC</span></td><td>ED filed a money-laundering complaint (Apr 2025). The trial court refused to take cognisance (16 Dec 2025) but let the probe continue. ED's appeal is in the Delhi High Court, next hearing 9 Oct 2026.</td></tr>
+          <tr><td>Shikohpur land deal (Robert Vadra, named accused)</td><td><span class="p p-inc">INC-linked</span></td><td>ED chargesheet (Jul 2025); court took cognisance (Apr 2026); bail granted (May 2026); jurisdiction challenge pending.</td></tr>
+          <tr><td>Disproportionate assets (D.K. Shivakumar, Karnataka Deputy CM)</td><td><span class="p p-inc">INC</span></td><td>Supreme Court refused to quash the CBI case (Jul 2024); dispute over Karnataka withdrawing consent is pending.</td></tr>
+          <tr><td>Obulapuram illegal mining (G. Janardhana Reddy, MLA)</td><td><span class="p p-bjp">BJP</span></td><td>Convicted by a CBI court and sentenced to 7 years (May 2025); conviction suspended by the Telangana High Court (Jun 2025).</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Agencies such as the ED and CBI report to the central government; critics of every ruling party argue cases target opponents, and the ruling side says the law is simply being applied. Court outcomes are the only settled facts here.</p>
+    </div>
+    <button class="disc" data-term="Wealth / Leaders' declared wealth" data-title="Wealth / Leaders' declared wealth" aria-controls="t-assets">Discuss this section</button>
+    <div class="thread-box" id="t-assets" hidden><div class="gz"></div></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="s" id="parties">
+    <h2>MPs &amp; party money</h2>
+    <div class="grid2">
+      <div class="panel find"><b>93% of Lok Sabha MPs are crorepatis</b><p class="prose">504 of 543 MPs elected in 2024 declared over ₹1 crore, up from 88% in 2019. Average declared assets: BJP MPs ₹50.0 crore, Congress MPs ₹22.9 crore, all MPs ₹46.3 crore.</p></div>
+      <div class="panel find"><b>46% declare criminal cases</b><p class="prose">251 of 543 MPs (2024) declared pending criminal cases, 170 of them serious — up from 43% and 29% in 2019. Both major parties have a large share.</p></div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Party money</th><th><span class="p p-bjp">BJP</span></th><th><span class="p p-inc">INC</span></th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Income 2023-24</td><td class="n">₹4,340 cr</td><td class="n">₹1,225 cr</td><td>Audited reports filed with the Election Commission</td></tr>
+        <tr><td>Income 2024-25</td><td class="n">₹6,769 cr</td><td class="n">₹918 cr</td><td>BJP took 85% of the six national parties' income</td></tr>
+        <tr><td>Declared assets (2021-22)</td><td class="n">₹6,047 cr</td><td class="n">₹806 cr</td><td>Latest ADR assets report found</td></tr>
+        <tr><td>Electoral bonds, 2018–2024</td><td class="n">≈₹6,060 cr</td><td class="n">≈₹1,350–1,420 cr</td><td>Scheme struck down by the Supreme Court, 15 Feb 2024; TMC got ≈₹1,590 cr</td></tr>
+        <tr><td>Electoral trusts 2024-25</td><td class="n">₹3,158 cr (82.5%)</td><td class="n">₹299 cr (7.8%)</td><td>Corporate money routed through registered trusts</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Ruling parties at the Centre have historically drawn the most corporate funding; the gap has been unusually wide since 2014.</p>
+    <button class="disc" data-term="Wealth / MPs and party money" data-title="Wealth / MPs and party money" aria-controls="t-parties">Discuss this section</button>
+    <div class="thread-box" id="t-parties" hidden><div class="gz"></div></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="s" id="land">
+    <h2>Public land for memorials</h2>
+    <p>Delhi's riverside memorial belt covers about 245 acres. Most of it went to Congress-era leaders, because they were the ones who died in office or were in power at the time; rules to stop separate memorials came in 2000 (NDA), 2013 (UPA) and 2014 (NDA).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Memorial</th><th>For</th><th>Year</th><th>Govt then</th><th>Area</th></tr></thead>
+      <tbody id="landRows"></tbody>
+    </table></div>
+    <p class="note">Upkeep of the Delhi samadhis cost about ₹80 crore in 2009–14 (RTI). Acreage for Vijay Ghat, Kisan Ghat and Samata Sthal could not be verified. V.P. Singh is the only former PM without a Delhi memorial.</p>
+    <div class="grid2">
+      <div class="panel find"><b>Rules that stopped new samadhis</b><p class="prose">2000 (NDA): no more separate memorials. 2013 (UPA): one shared complex, Rashtriya Smriti Sthal, with space for nine. 2014 (NDA): no government bungalow may become a memorial.</p></div>
+      <div class="panel find"><b>Manmohan Singh row</b><p class="prose">After his death in Dec 2024 he was cremated at Nigambodh Ghat; Congress called it an insult, the government said a trust must be set up first. A 900 m² plot at the shared complex was accepted in Mar 2025; the design was approved in Aug 2026. Narasimha Rao, whom the UPA never gave a Delhi memorial, got one from the NDA in 2015.</p></div>
+    </div>
+    <h3 style="margin-top:6px">Statues, museums and names on big public assets</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Project</th><th>Party in power</th><th>Cost / scale</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>Teen Murti: Nehru Memorial Museum → Prime Ministers' Museum</td><td><span class="p p-inc">INC</span> 1964 · <span class="p p-bjp">BJP</span> 2023</td><td class="n">≈30 acres</td><td>Nehru's residence made his memorial in 1964; renamed to cover all PMs in 2023.</td></tr>
+        <tr><td>Statue of Unity (Sardar Patel)</td><td><span class="p p-bjp">BJP</span> 2018</td><td class="n">₹2,989 cr</td><td>World's tallest statue, for a Congress leader the BJP claims as a national icon.</td></tr>
+        <tr><td>Mayawati's memorial parks, Uttar Pradesh</td><td><span class="p p-oth">BSP</span> 2007–12</td><td class="n">&gt;₹2,600 cr</td><td>Included statues of the sitting Chief Minister and her party symbol; the Supreme Court said (2019, tentative view) she should repay that part.</td></tr>
+        <tr><td>Shivaji memorial, Arabian Sea</td><td><span class="p p-inc">INC-NCP</span> idea · <span class="p p-bjp">BJP</span> launch 2016</td><td class="n">≈₹2,500 cr planned</td><td>Foundation laid 2016; construction not begun as of 2025.</td></tr>
+        <tr><td>Narendra Modi Stadium, Ahmedabad</td><td><span class="p p-bjp">BJP</span> 2021</td><td class="n">≈₹800 cr</td><td>Renamed after the sitting PM; owned by the Gujarat Cricket Association, not the government. The enclave keeps Sardar Patel's name.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">No sourced case was found of a Congress government naming a major asset after a leader while that leader was in office. Priyanka Gandhi was asked to leave her government bungalow in 2020 after her SPG cover was withdrawn; Congress called it vendetta, the government cited the rules.</p>
+    <button class="disc" data-term="Wealth / Public land for memorials" data-title="Wealth / Public land for memorials" aria-controls="t-land">Discuss this section</button>
+    <div class="thread-box" id="t-land" hidden><div class="gz"></div></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="s" id="names">
+    <h2>Whose names go on schemes</h2>
+    <div class="grid2">
+      <div class="panel find"><b>Congress: the Nehru–Gandhi family</b><p class="prose">An RTI reply (Dec 2012) found 27 of 58 central schemes and institutions named after Nehru, Indira or Rajiv Gandhi (Rajiv 16, Indira 8, Nehru 3), and 4 after Mahatma Gandhi. Higher counts of 370–450 circulate, but come from unofficial compilations.</p></div>
+      <div class="panel find"><b>BJP: the office and party icons</b><p class="prose">Most new central schemes carry "Pradhan Mantri" — the office, though critics say it brands the sitting PM, whose photo also appeared on COVID vaccine certificates. Others are named after Deendayal Upadhyaya, Atal Bihari Vajpayee or Syama Prasad Mookerjee, figures from the BJP's own tradition. No official count exists.</p></div>
+    </div>
+    <p>So both parties name schemes after their own. Congress mostly used one family's names; the BJP mostly uses the PM's office and its ideological founders, and has renamed many Congress-era schemes. Of 23 schemes Congress said had been renamed, a 2017 fact-check found 19 were.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Before</th><th>After</th><th>Year</th></tr></thead>
+      <tbody id="renameRows"></tbody>
+    </table></div>
+    <h3 style="margin-top:6px">In the states, both ways</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>State</th><th>What happened</th></tr></thead>
+      <tbody>
+        <tr><td>Karnataka</td><td>Congress launched Indira Canteens (2017); the BJP promised to rename them Atal Aahara Kendras.</td></tr>
+        <tr><td>Rajasthan</td><td>Congress's Indira Rasoi (2020) was renamed Shree Annapurna Rasoi by the BJP (Jan 2024).</td></tr>
+        <tr><td>Tamil Nadu</td><td>AIADMK's Amma canteens (2013), named after Jayalalithaa, survived two changes of government.</td></tr>
+        <tr><td>Andhra Pradesh</td><td>The TDP-led government renamed YSRCP's "YSR" schemes after NTR and "Chandranna" (Jun 2024); YSRCP had earlier shut TDP's Anna canteens.</td></tr>
+      </tbody>
+    </table></div>
+    <button class="disc" data-term="Wealth / Whose names go on schemes" data-title="Wealth / Whose names go on schemes" aria-controls="t-names">Discuss this section</button>
+    <div class="thread-box" id="t-names" hidden><div class="gz"></div></div>
+  </section>
+
+  <section class="panel" style="display:flex;flex-direction:column;gap:12px">
+    <h2>How this page was put together</h2>
+    <div class="method">
+      <div><b>Only public office-holders</b>Assets are listed only for people who held or sought office and had to declare them. Relatives appear only where a court case names them.</div>
+      <div><b>Declared, not estimated</b>Affidavit values are what the person declared on oath. Nothing here estimates hidden or market wealth.</div>
+      <div><b>Same test for both sides</b>For each claim about one party, the same question was checked for the other. Where nothing was found, the page says so instead of assuming.</div>
+      <div><b>Weak sources flagged</b>Figures that only appear in partisan outlets or unofficial compilations are marked as such or left out.</div>
+    </div>
+  </section>
+
+  <section class="panel" style="display:flex;flex-direction:column;gap:8px">
+    <h2>Sources</h2>
+    <p class="src" id="srcList"></p>
+  </section>
+</div>
+
+<script>
+const A=[
+ ["Narendra Modi","bjp","Prime Minister","₹1.65 cr (2014)","₹3.02 cr (2024)","Nil",1.65,3.02],
+ ["Amit Shah","bjp","Home Minister","₹40.32 cr (2019)","₹65.67 cr (2024)","₹42 lakh",40.32,65.67],
+ ["Nitin Gadkari","bjp","Road Transport Minister","₹18.79 cr (2019)","₹28.03 cr (2024)","₹6.22 cr",18.79,28.03],
+ ["Rahul Gandhi","inc","Leader of Opposition","₹9.40 cr (2014)","₹20.40 cr (2024)","₹50 lakh",9.40,20.40],
+ ["Sonia Gandhi","inc","Rajya Sabha MP","₹9.29 cr (2014)","₹12.54 cr (2024)","Nil",9.29,12.54],
+ ["Priyanka Gandhi","inc","Lok Sabha MP","—","≈₹12 cr own (2024)","₹16 lakh",null,12],
+ ["Mallikarjun Kharge","inc","Congress president","₹20.12 cr family (2020)","₹14.81 cr own; ₹38.65 cr family (2026)","not found",null,14.81],
+ ["Manmohan Singh","inc","Former PM","—","₹15.78 cr (2019)","Nil",null,15.78],
+ ["P. Chidambaram","inc","Former Finance Minister","—","₹197.48 cr (2022)","₹7.85 cr",null,197.48]
+];
+const L=[["Raj Ghat","Mahatma Gandhi","1948","INC","44 acres"],["Shanti Van","Jawaharlal Nehru","1964","INC","≈52 acres ⚑"],["Vijay Ghat","Lal Bahadur Shastri","1966","INC","not verified"],["Shakti Sthal","Indira Gandhi","1984","INC","45 acres"],["Samata Sthal","Jagjivan Ram","1986","INC","not verified"],["Kisan Ghat","Charan Singh","1987","INC","not verified"],["Vir Bhumi","Rajiv Gandhi","1991","INC","15 acres"],["Rashtriya Smriti Sthal (shared)","Common site for future leaders","2013","INC (UPA)","space for 9"],["Narasimha Rao memorial","P.V. Narasimha Rao","2015","BJP (NDA)","at shared site"],["Sadaiv Atal","Atal Bihari Vajpayee","2018","BJP (NDA)","≈7 acres ⚑"],["Pranab Mukherjee memorial","Pranab Mukherjee","2025–26","BJP (NDA)","at shared site"],["Manmohan Singh memorial","Manmohan Singh","2025–26","BJP (NDA)","900 m² at shared site"]];
+const R=[["Rajiv Gandhi Grameen Vidyutikaran Yojana","Deendayal Upadhyaya Gram Jyoti Yojana","2014–15"],["Indira Awaas Yojana","PM Awas Yojana – Gramin","2015–16"],["Rajiv Awas Yojana","PM Awas Yojana – Urban","2015"],["Jawaharlal Nehru National Urban Renewal Mission","AMRUT / Smart Cities Mission","2015"],["Swavalamban pension","Atal Pension Yojana","2015"],["Kandla Port","Deendayal Port","2017"],["Rajiv Gandhi Khel Ratna award","Major Dhyan Chand Khel Ratna","2021"],["Nehru Memorial Museum & Library","Prime Ministers' Museum & Library","2023"],["MGNREGA (itself renamed from NREGA by the UPA in 2009)","VB-G RAM G","2025–26"]];
+const pty={bjp:'<span class="p p-bjp">BJP</span>',inc:'<span class="p p-inc">INC</span>'};
+document.getElementById("assetRows").innerHTML=A.map(a=>{const ch=a[6]&&a[7]?`<div class="bar"><i style="width:${Math.min(80,Math.round((a[7]/a[6]-1)*60))}px;background:var(--${a[1]==="bjp"?"nda":"upa"})"></i>+${Math.round((a[7]/a[6]-1)*100)}%</div>`:'<span class="note">single filing</span>';return `<tr><td>${a[0]}<div class="note">${a[2]}</div></td><td>${pty[a[1]]}</td><td class="n">${a[3]}</td><td class="n">${a[4]}</td><td class="n">${a[5]}</td><td>${ch}</td></tr>`}).join("");
+document.getElementById("landRows").innerHTML=L.map(l=>`<tr><td>${l[0]}</td><td>${l[1]}</td><td class="n">${l[2]}</td><td>${l[3].startsWith("INC")?'<span class="p p-inc">'+l[3]+'</span>':'<span class="p p-bjp">'+l[3]+'</span>'}</td><td class="n">${l[4].replace("⚑",'<span class="flag" title="Only from a partisan or single secondary source">weak source</span>')}</td></tr>`).join("");
+document.getElementById("renameRows").innerHTML=R.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td></tr>`).join("");
+const S=[["ADR – 2024 Lok Sabha winners","https://adrindia.org/index.php/content/46-percent-mps-have-criminal-cases-93-percent-are-crorepatis-only-14-percent-women-adr-report"],["MyNeta – Narendra Modi 2024","https://www.myneta.info/LokSabha2024/candidate.php?candidate_id=8974"],["Modi's assets 2014–19 (Daily Star)","https://www.thedailystar.net/india/news/modis-assets-rise-52-5yrs-1735972"],["MyNeta – Amit Shah 2019 vs 2024","https://www.myneta.info/LokSabha2024/index.php?action=affidavitComparison&myneta_folder2=LokSabha2019&id1=4427&id2=8016"],["MyNeta – Nitin Gadkari 2019 vs 2024","https://www.myneta.info/LokSabha2024/index.php?action=affidavitComparison&myneta_folder2=LokSabha2019&id1=329&id2=5804"],["MyNeta – Rahul Gandhi","https://www.myneta.info/compare_profile.php?group_id=rqohbcMW3xRXyaJDtuY"],["MyNeta – Sonia Gandhi","https://www.myneta.info/compare_profile.php?group_id=ZsWiBfyANovLv3DdL9bf"],["Priyanka Gandhi affidavit (Business Standard)","https://www.business-standard.com/elections/lok-sabha-election/priyanka-gandhi-declares-assets-worth-rs-12-cr-husband-holds-over-rs-65-cr-124102301341_1.html"],["Kharge 2026 affidavit (News Minute)","https://www.thenewsminute.com/karnataka/mallikarjun-kharge-files-nomination-for-rajya-sabha-from-karnataka-assets-rise-to-rs-3865-crore"],["MyNeta – Manmohan Singh","https://www.myneta.info/rajsab09aff/candidate.php?candidate_id=788"],["MyNeta – P. Chidambaram","https://www.myneta.info/rajsab09aff/candidate.php?candidate_id=970"],["ADR – party income 2023-24","https://adrindia.org/content/bjp-emerges-as-indias-richest-political-party-in-2023-24-with-over-%E2%82%B94300-crore-income-adr-report"],["Party income 2024-25 (Pioneer)","https://dailypioneer.com/news/bjps-earning-accounted-for-85-of-total-income-of-national-parties-in-2024-25-adr-report"],["ADR – party assets","https://adrindia.org/content/rs-6000-crore-bjp-has-highest-assets-among-top-eight-political-parties-adr-report"],["Electoral bonds data (Business Standard)","https://www.business-standard.com/elections/lok-sabha-election/electoral-bonds-data-here-s-how-much-the-bjp-congress-and-tmc-received-124032200760_1.html"],["ADR – electoral trusts 2024-25","https://adrindia.org/content/bjp-received-more-than-82-of-funds-disbursed-by-electoral-trusts-in-2024-25-report"],["National Herald – cognisance refused (AIR)","https://www.newsonair.gov.in/delhi-court-refuses-to-take-cognisance-of-eds-money-laundering-case-against-sonia-rahul-gandhi"],["National Herald – HC hearing (NewsGram)","https://www.newsgram.com/india/2026/09/10/delhi-hc-defers-ed-plea-sonia-rahul-national-herald"],["Vadra case (Tribune)","https://www.tribuneindia.com/news/india/delhi-court-takes-cognisance-of-ed-chargesheet-against-robert-vadra/"],["Shivakumar case (Business Standard)","https://www.business-standard.com/india-news/sc-refuses-shivakumar-s-plea-on-quashing-cbi-s-disproportionate-assets-case-124071500473_1.html"],["Janardhana Reddy (Bar & Bench)","https://www.barandbench.com/news/telangana-high-court-stays-conviction-of-karnataka-mla-g-janardhana-reddy-in-illegal-mining-case"],["Samadhi upkeep RTI (RTI Foundation)","https://www.rtifoundationofindia.com/rs-80-crores-spent-5-years-maintain-samadhis-vvips"],["Memorial acreage (The Patriot)","https://thepatriot.in/reports/delhi-reimagining-memorials-do-we-care-about-them-enough-manmoha-singh-63297"],["Shanti Van acreage (Newsbharati, partisan)","https://www.newsbharati.com/Encyc/2018/8/31/The-Nehru-Memorial-controversy.html"],["2013 shared-memorial decision (Deccan Herald)","https://www.deccanherald.com/india/no-separate-samadhis-vvips-now-2261015"],["Narasimha Rao memorial (DNA)","https://www.dnaindia.com/india/report-10-years-after-death-ex-pm-narasimha-rao-gets-memorial-in-delhi-2100071"],["Manmohan Singh memorial (Tribune)","https://www.tribuneindia.com/news/delhi/manmohan-singhs-memorial-closer-to-reality-after-nearly-2-years-of-site-to-design-process/"],["Pranab Mukherjee memorial (Business Today)","https://www.businesstoday.in/latest/trends/story/government-clears-pranab-mukherjee-memorial-at-rajghats-rashtriya-smriti-complex-542450-2026-07-13"],["Bungalow memorial ban 2014 (DNA)","https://www.dnaindia.com/india/report-apj-abdul-kalam-s-bungalow-row-ministry-clarifies-govt-bungalows-cannot-be-converted-into-memorials-2139725"],["PMML renaming (PIB)","https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1932796"],["Statue of Unity cost (The Wire)","https://m.thewire.in/article/politics/statue-of-unity-cost-narendra-modi"],["Mayawati statues (Scroll)","https://scroll.in/latest/912521/mayawati-should-reimburse-public-money-spent-on-building-statues-observes-supreme-court"],["Narendra Modi Stadium (BOOM)","https://www.boomlive.in/fact-check/narendra-modi-stadium-cricket-gujarat-sardar-vallabhbhai-patel-sports-enclave-motera-ramnath-kovind-amit-shah-12114"],["Priyanka Gandhi bungalow (Scroll)","https://scroll.in/latest/966228/priyanka-gandhi-vadra-asked-to-vacate-lodhi-road-bungalow-by-august-1"],["RTI on scheme names 2012 (Business Standard)","https://www.business-standard.com/article/economy-policy/most-central-schemes-named-after-nehru-gandhi-family-112121603010_1.html"],["Renamed schemes fact-check (The Quint)","https://www.thequint.com/news/india/bjp-has-merely-renamed-19-out-of-23-congress-schemes-report"],["BJP naming examples (The Wire)","https://m.thewire.in/article/government/bjp-spree-name-schemes-structures-leaders"],["Khel Ratna renaming (Scroll)","https://scroll.in/latest/1002275/india-now-has-two-awards-named-after-dhyan-chand-after-centre-renames-rajiv-gandhi-khel-ratna-honour"],["VB-G RAM G (India TV)","https://www.indiatvnews.com/news/india/parliament-clears-vb-gram-g-bill-after-furious-debate-replaces-mgnrega-opposition-stages-walkout-2025-12-19-1022384"],["Indira Rasoi renamed (India TV)","https://www.indiatvnews.com/rajasthan/indira-rasoi-yojna-renamed-as-shree-annapurna-rasoi-yojna-cm-bhajan-lal-sharma-latest-updates-2024-01-05-910467"],["Indira vs Atal canteens (Deccan Herald)","https://www.deccanherald.com/elections/karnataka/question-mark-over-fate-of-indira-canteens-as-bjp-promises-atal-aahara-kendras-in-karnataka-1214880.html"],["Andhra renamings (Deccan Chronicle)","https://www.deccanchronicle.com/southern-states/andhra-pradesh/andhra-pradesh-naidu-government-renames-welfare-schemes-899727"]];
+document.getElementById("srcList").innerHTML=S.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a>`).join(" · ");
+</script>
+<script src="comments.js"></script>
+<script>Discuss.wire(document);Discuss.reopen();</script>
+</body>
+</html>
