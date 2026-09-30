@@ -67,6 +67,13 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
 .method{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;font-size:13.5px;color:var(--ink2)}
 .method b{display:block;color:var(--ink);margin-bottom:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.pc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.pc>div{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--pc,var(--line));border-radius:10px;padding:14px 16px;min-width:0}
+.pc h4{margin:0 0 6px;font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.pc ul{margin:0;padding-left:18px;color:var(--ink2);font-size:14px;display:flex;flex-direction:column;gap:6px}
+.pc .a{--pc:#4f8a5b} .pc .b{--pc:#b5643c} .pc .c{--pc:var(--mute)}
+.take{font-size:14px;color:var(--ink2);background:var(--tie-soft);border-radius:8px;padding:10px 14px;max-width:none}
+.take b{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -81,7 +88,7 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
 
   <nav class="toc" aria-label="Sections">
     <a href="#assets"><b>Leaders' declared wealth</b><span>Election affidavits, 2014–2026</span></a>
-    <a href="#parties"><b>MPs &amp; party money</b><span>ADR analysis of filings</span></a>
+    <a href="#parties"><b>MPs, money &amp; families</b><span>Party funding, criminal cases, dynasty</span></a>
     <a href="#land"><b>Public land for memorials</b><span>Samadhis, statues, renamed buildings</span></a>
     <a href="#names"><b>Whose names go on schemes</b><span>RTI counts, renamings, state examples</span></a>
   </nav>
@@ -108,16 +115,25 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
       </table></div>
       <p class="note">Agencies such as the ED and CBI report to the central government; critics of every ruling party argue cases target opponents, and the ruling side says the law is simply being applied. Court outcomes are the only settled facts here.</p>
     </div>
+    <div class="pc">
+      <div class="a"><h4>What the declarations do well</h4><ul>
+        <li>Every candidate must declare assets, debts and criminal cases on oath, under a 2002–03 Supreme Court ruling; voters can compare any leader across elections.</li>
+        <li>Growth for most leaders listed is modest and consistent with salaries, interest and rising property values.</li></ul></div>
+      <div class="b"><h4>Where they fall short</h4><ul>
+        <li>No agency routinely checks affidavits; false declarations are rarely prosecuted.</li>
+        <li>Property is shown at purchase or self-assessed value, so real wealth is understated for everyone.</li>
+        <li>Assets held by relatives, trusts or companies outside the spouse do not appear.</li></ul></div>
+    </div>
     <button class="disc" data-term="Wealth / Leaders' declared wealth" data-title="Wealth / Leaders' declared wealth" aria-controls="t-assets">Discuss this section</button>
     <div class="thread-box" id="t-assets" hidden><div class="gz"></div></div>
   </section>
 
   <!-- 2 -->
   <section class="s" id="parties">
-    <h2>MPs &amp; party money</h2>
+    <h2>MPs, money &amp; families</h2>
     <div class="grid2">
       <div class="panel find"><b>93% of Lok Sabha MPs are crorepatis</b><p class="prose">504 of 543 MPs elected in 2024 declared over ₹1 crore, up from 88% in 2019. Average declared assets: BJP MPs ₹50.0 crore, Congress MPs ₹22.9 crore, all MPs ₹46.3 crore.</p></div>
-      <div class="panel find"><b>46% declare criminal cases</b><p class="prose">251 of 543 MPs (2024) declared pending criminal cases, 170 of them serious — up from 43% and 29% in 2019. Both major parties have a large share.</p></div>
+      <div class="panel find"><b>46% declare criminal cases</b><p class="prose">251 of 543 MPs (2024) declared pending criminal cases, 170 of them serious — up from 43% and 29% in 2019. Party breakdown below.</p></div>
     </div>
     <div class="tbl"><table>
       <thead><tr><th>Party money</th><th><span class="p p-bjp">BJP</span></th><th><span class="p p-inc">INC</span></th><th>Note</th></tr></thead>
@@ -130,6 +146,45 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
       </tbody>
     </table></div>
     <p class="note">Ruling parties at the Centre have historically drawn the most corporate funding; the gap has been unusually wide since 2014.</p>
+    <h3 style="margin-top:6px">Why does the BJP get so much more money?</h3>
+    <div class="pc">
+      <div class="a"><h4>Ordinary explanations</h4><ul>
+        <li><b>Ruling-party premium.</b> Donors give most to whoever governs. Before 2014 Congress was the richest party: from 2004-05 to 2014-15 it declared about ₹4,000 crore against the BJP's ≈₹3,270 crore (ADR).</li>
+        <li>The BJP rules the Centre and most states, has the largest membership and fights more seats, so it raises and spends more.</li>
+        <li>Businesses that favour its economic policies donate openly through registered electoral trusts, which disclose donors.</li></ul></div>
+      <div class="b"><h4>Reasons for concern</h4><ul>
+        <li>Electoral bonds (2018–24) hid donors from the public but not from the government-owned bank that sold them. The Supreme Court struck the scheme down in 2024 as a violation of voters' right to know.</li>
+        <li>Disclosed data showed 26 companies under ED, CBI or income-tax scrutiny bought about 43% of all bonds, and 30 firms under probe gave ₹335 crore to the BJP. Regional ruling parties such as TMC also received large sums.</li>
+        <li>These patterns are unproven as corruption: in 2024 the Supreme Court declined to order a court-monitored probe, and no court has found a quid pro quo.</li></ul></div>
+      <div class="c"><h4>Is the money declared?</h4><ul>
+        <li>Yes, in total. Every party files audited accounts and contribution reports with the Election Commission.</li>
+        <li>But donors of under ₹20,000 need not be named, and bond donors were secret until the court forced disclosure, so much party income comes from unnamed sources. In 2004–15 that was 83% of Congress's income and 65% of the BJP's; in the bond years it was higher still for the BJP.</li></ul></div>
+    </div>
+
+    <h3 style="margin-top:6px">Criminal cases among MPs, by party (2024)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Party</th><th>MPs</th><th>With any declared case</th><th>With serious cases</th></tr></thead>
+      <tbody>
+        <tr><td><span class="p p-bjp">BJP</span></td><td class="n">240</td><td><div class="bar"><i style="width:39px;background:var(--nda)"></i>94 (39%)</div></td><td><div class="bar"><i style="width:26px;background:var(--nda)"></i>63 (26%)</div></td></tr>
+        <tr><td><span class="p p-inc">INC</span></td><td class="n">99</td><td><div class="bar"><i style="width:49px;background:var(--upa)"></i>49 (49%)</div></td><td><div class="bar"><i style="width:32px;background:var(--upa)"></i>32 (32%)</div></td></tr>
+        <tr><td>All MPs</td><td class="n">543</td><td><div class="bar"><i style="width:46px;background:var(--mute)"></i>251 (46%)</div></td><td><div class="bar"><i style="width:31px;background:var(--mute)"></i>170 (31%)</div></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Self-declared pending cases, not convictions. "Serious" means offences such as murder, kidnapping, crimes against women or corruption. Many cases are protest-related; parties on both sides say cases against them are politically motivated.</p>
+
+    <h3 style="margin-top:6px">Family party or merit party?</h3>
+    <div class="pc">
+      <div class="b"><h4>The case that Congress is a family party</h4><ul>
+        <li>A Nehru–Gandhi family member led the party for roughly 40 of the 75 years since independence, including Sonia Gandhi for 22 years.</li>
+        <li>30% of its 2024 Lok Sabha candidates came from political families (Prajatantra Foundation study).</li></ul></div>
+      <div class="a"><h4>The Congress response</h4><ul>
+        <li>Its president since 2022, Mallikarjun Kharge, won a contested internal vote against Shashi Tharoor; the family has won and lost elections like anyone else.</li>
+        <li>Supporters argue the family keeps a diverse coalition together.</li></ul></div>
+      <div class="c"><h4>The BJP comparison</h4><ul>
+        <li>No single family controls the BJP; its presidents change and are drawn from the RSS–BJP cadre.</li>
+        <li>But 25% of its 2024 candidates were also from political families, close to Congress's 30%, and it allies with family-run parties.</li></ul></div>
+    </div>
+    <p class="take"><b>What the data shows:</b> Congress's top leadership has been far more family-centred than the BJP's. Below the top, both parties field dynasts at similar rates.</p>
     <button class="disc" data-term="Wealth / MPs and party money" data-title="Wealth / MPs and party money" aria-controls="t-parties">Discuss this section</button>
     <div class="thread-box" id="t-parties" hidden><div class="gz"></div></div>
   </section>
@@ -159,6 +214,15 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
       </tbody>
     </table></div>
     <p class="note">No sourced case was found of a Congress government naming a major asset after a leader while that leader was in office. Priyanka Gandhi was asked to leave her government bungalow in 2020 after her SPG cover was withdrawn; Congress called it vendetta, the government cited the rules.</p>
+    <div class="pc">
+      <div class="a"><h4>The case for memorials</h4><ul>
+        <li>Nations honour founders and leaders; Raj Ghat and Shanti Van are also public green space and visited by millions.</li>
+        <li>Since 2013 new memorials share one complex, so each now uses a small plot rather than dozens of acres.</li></ul></div>
+      <div class="b"><h4>The case for concern</h4><ul>
+        <li>About 245 acres of prime riverside land went to a handful of mostly Congress-era leaders, with continuing upkeep and security costs.</li>
+        <li>Grand projects such as Mayawati's parks and naming a stadium after a sitting PM look like self-promotion with public resources or public goodwill.</li>
+        <li>Delays and disputes over memorials for opponents (Narasimha Rao under the UPA, Manmohan Singh under the NDA) suggest politics shapes who is honoured.</li></ul></div>
+    </div>
     <button class="disc" data-term="Wealth / Public land for memorials" data-title="Wealth / Public land for memorials" aria-controls="t-land">Discuss this section</button>
     <div class="thread-box" id="t-land" hidden><div class="gz"></div></div>
   </section>
@@ -185,6 +249,17 @@ td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
         <tr><td>Andhra Pradesh</td><td>The TDP-led government renamed YSRCP's "YSR" schemes after NTR and "Chandranna" (Jun 2024); YSRCP had earlier shut TDP's Anna canteens.</td></tr>
       </tbody>
     </table></div>
+    <h3 style="margin-top:6px">Is renaming good or bad?</h3>
+    <div class="pc">
+      <div class="a"><h4>The case for</h4><ul>
+        <li>Schemes funded by taxpayers should not advertise one family; function-based or office-based names are more neutral.</li>
+        <li>Some renamings came with real redesign and more money (PM Awas Yojana was broader than Indira Awaas; MGNREGA's replacement raises the guarantee to 125 days).</li></ul></div>
+      <div class="b"><h4>The case against</h4><ul>
+        <li>Most renamings swap one set of partisan icons for another (Rajiv → Deendayal, Indira → Atal) rather than removing politics from the name.</li>
+        <li>"PM" branding and the PM's photo on welfare material tie benefits to the sitting leader, which critics say is personal promotion by other means.</li>
+        <li>Renaming costs money, erases a predecessor's credit and makes it harder to track a scheme's record over time.</li></ul></div>
+    </div>
+    <p class="take"><b>Neutral option:</b> naming schemes by what they do (for example "National Rural Employment Guarantee", as it was first called in 2005) avoids both problems, and is what most other democracies do.</p>
     <button class="disc" data-term="Wealth / Whose names go on schemes" data-title="Wealth / Whose names go on schemes" aria-controls="t-names">Discuss this section</button>
     <div class="thread-box" id="t-names" hidden><div class="gz"></div></div>
   </section>
@@ -224,7 +299,7 @@ document.getElementById("assetRows").innerHTML=A.map(a=>{const ch=a[6]&&a[7]?`<d
 const pp=t=>t==="—"?"—":t.startsWith("INC")?'<span class="p p-inc">'+t+'</span>':t.startsWith("BJP")?'<span class="p p-bjp">'+t+'</span>':'<span class="p p-oth">'+t+'</span>';
 document.getElementById("landRows").innerHTML=L.map(l=>`<tr><td>${l[0]}</td><td>${l[1]}${l[2]==="—"?"":" "+pp(l[2])}</td><td class="n">${l[3]}</td><td>${pp(l[4])}</td><td class="n">${l[5].replace("⚑",'<span class="flag" title="Only from a partisan or single secondary source">weak source</span>')}</td></tr>`).join("");
 document.getElementById("renameRows").innerHTML=R.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td></tr>`).join("");
-const S=[["ADR – 2024 Lok Sabha winners","https://adrindia.org/index.php/content/46-percent-mps-have-criminal-cases-93-percent-are-crorepatis-only-14-percent-women-adr-report"],["MyNeta – Narendra Modi 2024","https://www.myneta.info/LokSabha2024/candidate.php?candidate_id=8974"],["Modi's assets 2014–19 (Daily Star)","https://www.thedailystar.net/india/news/modis-assets-rise-52-5yrs-1735972"],["MyNeta – Amit Shah 2019 vs 2024","https://www.myneta.info/LokSabha2024/index.php?action=affidavitComparison&myneta_folder2=LokSabha2019&id1=4427&id2=8016"],["MyNeta – Nitin Gadkari 2019 vs 2024","https://www.myneta.info/LokSabha2024/index.php?action=affidavitComparison&myneta_folder2=LokSabha2019&id1=329&id2=5804"],["MyNeta – Rahul Gandhi","https://www.myneta.info/compare_profile.php?group_id=rqohbcMW3xRXyaJDtuY"],["MyNeta – Sonia Gandhi","https://www.myneta.info/compare_profile.php?group_id=ZsWiBfyANovLv3DdL9bf"],["Priyanka Gandhi affidavit (Business Standard)","https://www.business-standard.com/elections/lok-sabha-election/priyanka-gandhi-declares-assets-worth-rs-12-cr-husband-holds-over-rs-65-cr-124102301341_1.html"],["Kharge 2026 affidavit (News Minute)","https://www.thenewsminute.com/karnataka/mallikarjun-kharge-files-nomination-for-rajya-sabha-from-karnataka-assets-rise-to-rs-3865-crore"],["MyNeta – Manmohan Singh","https://www.myneta.info/rajsab09aff/candidate.php?candidate_id=788"],["MyNeta – P. Chidambaram","https://www.myneta.info/rajsab09aff/candidate.php?candidate_id=970"],["ADR – party income 2023-24","https://adrindia.org/content/bjp-emerges-as-indias-richest-political-party-in-2023-24-with-over-%E2%82%B94300-crore-income-adr-report"],["Party income 2024-25 (Pioneer)","https://dailypioneer.com/news/bjps-earning-accounted-for-85-of-total-income-of-national-parties-in-2024-25-adr-report"],["ADR – party assets","https://adrindia.org/content/rs-6000-crore-bjp-has-highest-assets-among-top-eight-political-parties-adr-report"],["Electoral bonds data (Business Standard)","https://www.business-standard.com/elections/lok-sabha-election/electoral-bonds-data-here-s-how-much-the-bjp-congress-and-tmc-received-124032200760_1.html"],["ADR – electoral trusts 2024-25","https://adrindia.org/content/bjp-received-more-than-82-of-funds-disbursed-by-electoral-trusts-in-2024-25-report"],["National Herald – cognisance refused (AIR)","https://www.newsonair.gov.in/delhi-court-refuses-to-take-cognisance-of-eds-money-laundering-case-against-sonia-rahul-gandhi"],["National Herald – HC hearing (NewsGram)","https://www.newsgram.com/india/2026/09/10/delhi-hc-defers-ed-plea-sonia-rahul-national-herald"],["Vadra case (Tribune)","https://www.tribuneindia.com/news/india/delhi-court-takes-cognisance-of-ed-chargesheet-against-robert-vadra/"],["Shivakumar case (Business Standard)","https://www.business-standard.com/india-news/sc-refuses-shivakumar-s-plea-on-quashing-cbi-s-disproportionate-assets-case-124071500473_1.html"],["Janardhana Reddy (Bar & Bench)","https://www.barandbench.com/news/telangana-high-court-stays-conviction-of-karnataka-mla-g-janardhana-reddy-in-illegal-mining-case"],["Samadhi upkeep RTI (RTI Foundation)","https://www.rtifoundationofindia.com/rs-80-crores-spent-5-years-maintain-samadhis-vvips"],["Memorial acreage (The Patriot)","https://thepatriot.in/reports/delhi-reimagining-memorials-do-we-care-about-them-enough-manmoha-singh-63297"],["Shanti Van acreage (Newsbharati, partisan)","https://www.newsbharati.com/Encyc/2018/8/31/The-Nehru-Memorial-controversy.html"],["2013 shared-memorial decision (Deccan Herald)","https://www.deccanherald.com/india/no-separate-samadhis-vvips-now-2261015"],["Narasimha Rao memorial (DNA)","https://www.dnaindia.com/india/report-10-years-after-death-ex-pm-narasimha-rao-gets-memorial-in-delhi-2100071"],["Manmohan Singh memorial (Tribune)","https://www.tribuneindia.com/news/delhi/manmohan-singhs-memorial-closer-to-reality-after-nearly-2-years-of-site-to-design-process/"],["Pranab Mukherjee memorial (Business Today)","https://www.businesstoday.in/latest/trends/story/government-clears-pranab-mukherjee-memorial-at-rajghats-rashtriya-smriti-complex-542450-2026-07-13"],["Bungalow memorial ban 2014 (DNA)","https://www.dnaindia.com/india/report-apj-abdul-kalam-s-bungalow-row-ministry-clarifies-govt-bungalows-cannot-be-converted-into-memorials-2139725"],["PMML renaming (PIB)","https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1932796"],["Statue of Unity cost (The Wire)","https://m.thewire.in/article/politics/statue-of-unity-cost-narendra-modi"],["Mayawati statues (Scroll)","https://scroll.in/latest/912521/mayawati-should-reimburse-public-money-spent-on-building-statues-observes-supreme-court"],["Narendra Modi Stadium (BOOM)","https://www.boomlive.in/fact-check/narendra-modi-stadium-cricket-gujarat-sardar-vallabhbhai-patel-sports-enclave-motera-ramnath-kovind-amit-shah-12114"],["Priyanka Gandhi bungalow (Scroll)","https://scroll.in/latest/966228/priyanka-gandhi-vadra-asked-to-vacate-lodhi-road-bungalow-by-august-1"],["RTI on scheme names 2012 (Business Standard)","https://www.business-standard.com/article/economy-policy/most-central-schemes-named-after-nehru-gandhi-family-112121603010_1.html"],["Renamed schemes fact-check (The Quint)","https://www.thequint.com/news/india/bjp-has-merely-renamed-19-out-of-23-congress-schemes-report"],["BJP naming examples (The Wire)","https://m.thewire.in/article/government/bjp-spree-name-schemes-structures-leaders"],["Khel Ratna renaming (Scroll)","https://scroll.in/latest/1002275/india-now-has-two-awards-named-after-dhyan-chand-after-centre-renames-rajiv-gandhi-khel-ratna-honour"],["VB-G RAM G (India TV)","https://www.indiatvnews.com/news/india/parliament-clears-vb-gram-g-bill-after-furious-debate-replaces-mgnrega-opposition-stages-walkout-2025-12-19-1022384"],["Indira Rasoi renamed (India TV)","https://www.indiatvnews.com/rajasthan/indira-rasoi-yojna-renamed-as-shree-annapurna-rasoi-yojna-cm-bhajan-lal-sharma-latest-updates-2024-01-05-910467"],["Indira vs Atal canteens (Deccan Herald)","https://www.deccanherald.com/elections/karnataka/question-mark-over-fate-of-indira-canteens-as-bjp-promises-atal-aahara-kendras-in-karnataka-1214880.html"],["Andhra renamings (Deccan Chronicle)","https://www.deccanchronicle.com/southern-states/andhra-pradesh/andhra-pradesh-naidu-government-renames-welfare-schemes-899727"]];
+const S=[["ADR – 2024 Lok Sabha winners","https://adrindia.org/index.php/content/46-percent-mps-have-criminal-cases-93-percent-are-crorepatis-only-14-percent-women-adr-report"],["MyNeta – Narendra Modi 2024","https://www.myneta.info/LokSabha2024/candidate.php?candidate_id=8974"],["Modi's assets 2014–19 (Daily Star)","https://www.thedailystar.net/india/news/modis-assets-rise-52-5yrs-1735972"],["MyNeta – Amit Shah 2019 vs 2024","https://www.myneta.info/LokSabha2024/index.php?action=affidavitComparison&myneta_folder2=LokSabha2019&id1=4427&id2=8016"],["MyNeta – Nitin Gadkari 2019 vs 2024","https://www.myneta.info/LokSabha2024/index.php?action=affidavitComparison&myneta_folder2=LokSabha2019&id1=329&id2=5804"],["MyNeta – Rahul Gandhi","https://www.myneta.info/compare_profile.php?group_id=rqohbcMW3xRXyaJDtuY"],["MyNeta – Sonia Gandhi","https://www.myneta.info/compare_profile.php?group_id=ZsWiBfyANovLv3DdL9bf"],["Priyanka Gandhi affidavit (Business Standard)","https://www.business-standard.com/elections/lok-sabha-election/priyanka-gandhi-declares-assets-worth-rs-12-cr-husband-holds-over-rs-65-cr-124102301341_1.html"],["Kharge 2026 affidavit (News Minute)","https://www.thenewsminute.com/karnataka/mallikarjun-kharge-files-nomination-for-rajya-sabha-from-karnataka-assets-rise-to-rs-3865-crore"],["MyNeta – Manmohan Singh","https://www.myneta.info/rajsab09aff/candidate.php?candidate_id=788"],["MyNeta – P. Chidambaram","https://www.myneta.info/rajsab09aff/candidate.php?candidate_id=970"],["ADR – party income 2023-24","https://adrindia.org/content/bjp-emerges-as-indias-richest-political-party-in-2023-24-with-over-%E2%82%B94300-crore-income-adr-report"],["Party income 2024-25 (Pioneer)","https://dailypioneer.com/news/bjps-earning-accounted-for-85-of-total-income-of-national-parties-in-2024-25-adr-report"],["ADR – party assets","https://adrindia.org/content/rs-6000-crore-bjp-has-highest-assets-among-top-eight-political-parties-adr-report"],["Electoral bonds data (Business Standard)","https://www.business-standard.com/elections/lok-sabha-election/electoral-bonds-data-here-s-how-much-the-bjp-congress-and-tmc-received-124032200760_1.html"],["ADR – electoral trusts 2024-25","https://adrindia.org/content/bjp-received-more-than-82-of-funds-disbursed-by-electoral-trusts-in-2024-25-report"],["National Herald – cognisance refused (AIR)","https://www.newsonair.gov.in/delhi-court-refuses-to-take-cognisance-of-eds-money-laundering-case-against-sonia-rahul-gandhi"],["National Herald – HC hearing (NewsGram)","https://www.newsgram.com/india/2026/09/10/delhi-hc-defers-ed-plea-sonia-rahul-national-herald"],["Vadra case (Tribune)","https://www.tribuneindia.com/news/india/delhi-court-takes-cognisance-of-ed-chargesheet-against-robert-vadra/"],["Shivakumar case (Business Standard)","https://www.business-standard.com/india-news/sc-refuses-shivakumar-s-plea-on-quashing-cbi-s-disproportionate-assets-case-124071500473_1.html"],["Janardhana Reddy (Bar & Bench)","https://www.barandbench.com/news/telangana-high-court-stays-conviction-of-karnataka-mla-g-janardhana-reddy-in-illegal-mining-case"],["Samadhi upkeep RTI (RTI Foundation)","https://www.rtifoundationofindia.com/rs-80-crores-spent-5-years-maintain-samadhis-vvips"],["Memorial acreage (The Patriot)","https://thepatriot.in/reports/delhi-reimagining-memorials-do-we-care-about-them-enough-manmoha-singh-63297"],["Shanti Van acreage (Newsbharati, partisan)","https://www.newsbharati.com/Encyc/2018/8/31/The-Nehru-Memorial-controversy.html"],["2013 shared-memorial decision (Deccan Herald)","https://www.deccanherald.com/india/no-separate-samadhis-vvips-now-2261015"],["Narasimha Rao memorial (DNA)","https://www.dnaindia.com/india/report-10-years-after-death-ex-pm-narasimha-rao-gets-memorial-in-delhi-2100071"],["Manmohan Singh memorial (Tribune)","https://www.tribuneindia.com/news/delhi/manmohan-singhs-memorial-closer-to-reality-after-nearly-2-years-of-site-to-design-process/"],["Pranab Mukherjee memorial (Business Today)","https://www.businesstoday.in/latest/trends/story/government-clears-pranab-mukherjee-memorial-at-rajghats-rashtriya-smriti-complex-542450-2026-07-13"],["Bungalow memorial ban 2014 (DNA)","https://www.dnaindia.com/india/report-apj-abdul-kalam-s-bungalow-row-ministry-clarifies-govt-bungalows-cannot-be-converted-into-memorials-2139725"],["PMML renaming (PIB)","https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1932796"],["Statue of Unity cost (The Wire)","https://m.thewire.in/article/politics/statue-of-unity-cost-narendra-modi"],["Mayawati statues (Scroll)","https://scroll.in/latest/912521/mayawati-should-reimburse-public-money-spent-on-building-statues-observes-supreme-court"],["Narendra Modi Stadium (BOOM)","https://www.boomlive.in/fact-check/narendra-modi-stadium-cricket-gujarat-sardar-vallabhbhai-patel-sports-enclave-motera-ramnath-kovind-amit-shah-12114"],["Priyanka Gandhi bungalow (Scroll)","https://scroll.in/latest/966228/priyanka-gandhi-vadra-asked-to-vacate-lodhi-road-bungalow-by-august-1"],["RTI on scheme names 2012 (Business Standard)","https://www.business-standard.com/article/economy-policy/most-central-schemes-named-after-nehru-gandhi-family-112121603010_1.html"],["Renamed schemes fact-check (The Quint)","https://www.thequint.com/news/india/bjp-has-merely-renamed-19-out-of-23-congress-schemes-report"],["BJP naming examples (The Wire)","https://m.thewire.in/article/government/bjp-spree-name-schemes-structures-leaders"],["Khel Ratna renaming (Scroll)","https://scroll.in/latest/1002275/india-now-has-two-awards-named-after-dhyan-chand-after-centre-renames-rajiv-gandhi-khel-ratna-honour"],["VB-G RAM G (India TV)","https://www.indiatvnews.com/news/india/parliament-clears-vb-gram-g-bill-after-furious-debate-replaces-mgnrega-opposition-stages-walkout-2025-12-19-1022384"],["Indira Rasoi renamed (India TV)","https://www.indiatvnews.com/rajasthan/indira-rasoi-yojna-renamed-as-shree-annapurna-rasoi-yojna-cm-bhajan-lal-sharma-latest-updates-2024-01-05-910467"],["Indira vs Atal canteens (Deccan Herald)","https://www.deccanherald.com/elections/karnataka/question-mark-over-fate-of-indira-canteens-as-bjp-promises-atal-aahara-kendras-in-karnataka-1214880.html"],["Andhra renamings (Deccan Chronicle)","https://www.deccanchronicle.com/southern-states/andhra-pradesh/andhra-pradesh-naidu-government-renames-welfare-schemes-899727"],["ADR – 2024 winners, full report (PDF)","https://adrindia.org/sites/default/files/Lok_Sabha_Elections_2024_Criminal_and_Financial_background_details_of_Winning_Candidates_Finalver_English%20(1).pdf"],["Dynasts among 2024 candidates (ThePrint)","https://theprint.in/politics/1-in-every-4-bjp-congress-lok-sabha-candidates-are-political-legatees-finds-new-study/2106749/"],["BJP no less dynastic (IndiaSpend)","https://www.indiaspend.com/bjp-no-less-dynastic-than-congress-lok-sabha-data-show"],["Bond donors under probe (TNM–Newslaundry)","https://www.thenewsminute.com/news/tnm-nl-investigation-30-firms-facing-ed-it-probe-donated-rs-335-cr-to-bjp"],["Electoral bonds and corruption study (Nature HSSC)","https://www.nature.com/articles/s41599-025-06201-z"],["Party income and unknown sources 2004–15 (India TV / ADR)","https://www.indiatvnews.com/politics/national-of-rs-11-000-cr-political-parties-received-in-11-years-69-pc-came-from-unknown-sources-adr-366246"],["Top bond donors raided (The Quint)","https://www.thequint.com/news/politics/electoral-bonds-donors-raided-by-investigative-agencies-cbi-ed-income-tax-bjp-tmc"]];
 document.getElementById("srcList").innerHTML=S.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a>`).join(" · ");
 </script>
 <script src="comments.js"></script>
