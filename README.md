@@ -10,6 +10,10 @@ An interactive, indicator-based comparison of India's UPA government (May 2004 â
 
 Every score shows the underlying numbers and links to its sources. The scorecard is a way to explore the data under different priorities, not an endorsement of either government.
 
+## Events & reforms page
+
+`events.html` is a filterable timeline of attacks, global shocks, domestic crises, communal violence, reforms and governance controversies from 1975 to 2026. Each entry shows who was in power, who was mainly responsible, the response, and which scorecard areas it affected. Major reforms carry an evidence rating judged only against their own stated goals.
+
 ## Data
 
 Figures are as of 30 September 2026, drawn from the World Bank, WITS / UN Comtrade, RBI, PIB, PRS, NCRB, SATP, RSF, Freedom House, V-Dem, Transparency International and other sources listed on the page. Caveats on each indicator are shown inline.

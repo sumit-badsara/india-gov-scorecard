@@ -80,12 +80,17 @@ td.e{width:10%}
 .src li{margin-bottom:4px;break-inside:avoid}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:520px){.big{font-size:42px}.dim summary{grid-template-columns:1fr}}
+.nav{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+.nav a{text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);background:var(--panel)}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nav a:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
 </style>
 </head>
 <body>
 
 
 <div class="wrap">
+  <nav class="nav" aria-label="Site"><a href="./" aria-current="page">Scorecard</a><a href="events.html">Events &amp; reforms</a></nav>
   <header style="display:flex;flex-direction:column;gap:14px">
     <p class="eyebrow">India · Union governments compared on public data</p>
     <h1>UPA vs NDA Scorecard</h1>
