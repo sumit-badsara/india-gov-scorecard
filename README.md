@@ -12,7 +12,7 @@ Every score shows the underlying numbers and links to its sources. The scorecard
 
 ## Events & reforms page
 
-The **Events & reforms** tab (`index.html#events`) is a filterable timeline of attacks, global shocks, domestic crises, communal violence, reforms and governance controversies from 1975 to 2026. Each entry shows who was in power, who was mainly responsible, the response, and which scorecard areas it affected. Major reforms carry an evidence rating judged only against their own stated goals.
+`events.html` is a filterable timeline of attacks, global shocks, domestic crises, communal violence, reforms and governance controversies from 1975 to 2026. Each entry shows who was in power, who was mainly responsible, the response, and which scorecard areas it affected. Major reforms carry an evidence rating judged only against their own stated goals.
 
 ## Data
 
