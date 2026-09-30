@@ -84,6 +84,14 @@ td.e{width:10%}
 .nav a{text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);background:var(--panel)}
 .nav a[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .nav a:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
+.disc{font:inherit;font-size:12px;margin-top:6px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink2);cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.disc:hover{border-color:var(--ink2)}
+.disc[aria-expanded="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.disc:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
+.gz-note{font-size:12.5px;color:var(--mute);margin:0 0 6px}
+.gz-note a{color:var(--ink2)}
+tr.thread td{background:var(--bg);padding:10px 12px 14px}
+.thread-box{border-top:1px dashed var(--line);padding-top:10px}
 </style>
 </head>
 <body>
@@ -94,7 +102,7 @@ td.e{width:10%}
   <header style="display:flex;flex-direction:column;gap:14px">
     <p class="eyebrow">India · Union governments compared on public data</p>
     <h1>UPA vs NDA Scorecard</h1>
-    <p class="lede"><span id="cnt">Fourteen areas</span>, each indicator scored on data from neutral or official sources. Choose how to account for time in office, set how much each area matters to you, and the tally updates. Every score shows the numbers behind it.</p>
+    <p class="lede"><span id="cnt">Fourteen areas</span>, each indicator scored on data from neutral or official sources. Choose how to account for time in office, set how much each area matters to you, and the tally updates. Every score shows the numbers behind it, and every indicator has a public discussion thread.</p>
     <div class="tenure" aria-label="Time in office">
       <div class="u">UPA I &amp; II · May 2004 – May 2014 · 10.0 yrs</div>
       <div class="n">NDA · May 2014 – Sep 2026 · 12.3 yrs and counting</div>
@@ -257,7 +265,7 @@ function render(){
 const wEl=document.getElementById("weights"),dEl=document.getElementById("dims");
 D.forEach((d,x)=>{
  wEl.insertAdjacentHTML("beforeend",`<label class="w" for="w-${d.k}"><span>${d.n}</span><output id="o-${d.k}"></output><input type="range" id="w-${d.k}" min="0" max="3" step="1"></label>`);
- const rows=d.i.map((r,j)=>`<tr><td class="ind">${r[0]}</td><td class="v">${r[1]}</td><td class="v">${r[2]}${r[5]?`<span class="note">${r[5]}</span>`:""}</td><td class="e" id="e-${d.k}-${j}"></td></tr>`).join("");
+ const rows=d.i.map((r,j)=>{const id=`t-${d.k}-${j}`,term=`Scorecard / ${d.n} / ${r[0]}`.replace(/"/g,"");return `<tr><td class="ind">${r[0]}<br><button class="disc" data-term="${term}" data-title="${term}" aria-controls="${id}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Discuss</button></td><td class="v">${r[1]}</td><td class="v">${r[2]}${r[5]?`<span class="note">${r[5]}</span>`:""}</td><td class="e" id="e-${d.k}-${j}"></td></tr><tr class="thread" id="${id}" hidden><td colspan="4"><div class="gz"></div></td></tr>`}).join("");
  dEl.insertAdjacentHTML("beforeend",`<details class="dim"${x===0?" open":""}><summary><span class="name">${d.n}</span><span class="mini" id="m-${d.k}"></span><span class="sub">${d.s} · ${d.i.length} indicators</span></summary><div class="tbl"><table><thead><tr><th>Indicator</th><th style="color:var(--upa)">UPA 2004–14</th><th style="color:var(--nda)">NDA 2014–26</th><th>Edge</th></tr></thead><tbody>${rows}</tbody></table></div></details>`);
 });
 D.forEach(d=>document.getElementById("w-"+d.k).addEventListener("input",e=>{W[d.k]=+e.target.value;render()}));
@@ -268,6 +276,8 @@ document.getElementById("src").innerHTML=SRC.map(s=>`<li><a href="${s[1]}" targe
 document.getElementById("cnt").textContent=D.length+" areas, "+D.reduce((a,d)=>a+d.i.length,0)+" indicators";
 render();
 </script>
+<script src="comments.js"></script>
+<script>Discuss.wire(document);Discuss.reopen();</script>
 
 </body>
 </html>
