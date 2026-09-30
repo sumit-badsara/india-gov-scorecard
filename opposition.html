@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="How BJP and Congress behaved in opposition, which of their charges held up, foreign-funding findings, and how governments of every party handled protests.">
+<title>Opposition &amp; Protest · India Gov Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: report page — section index, then four sections of tables and short findings; party-neutral colours per party */
+:root{
+  --bg:#f6f7f5; --panel:#ffffff; --ink:#1c2321; --ink2:#4d5753; --mute:#7c8682; --line:#dfe3e0; --tie-soft:#eceeed;
+  --upa:#1f7a78; --upa-soft:#d7ecea; --nda:#7a3f8f; --nda-soft:#ecdff0; --oth:#8a6a2f; --oth-soft:#f1e9d8;
+  --disc:#fff3c4; --disc-ink:#6b5200; --disc-line:#ecd98a;
+  --display:"Spectral",Georgia,serif; --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331; --tie-soft:#262c2a;
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --oth:#d0ae6c; --oth-soft:#342b1b;
+  --disc:#f6e7a6; --disc-ink:#4a3a00; --disc-line:#e3cf78; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331; --tie-soft:#262c2a;
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --oth:#d0ae6c; --oth-soft:#342b1b;
+  --disc:#f6e7a6; --disc-ink:#4a3a00; --disc-line:#e3cf78; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:20px 56px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:17px}
+p{margin:0} a{color:inherit}
+.nav{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+.nav a{text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);background:var(--panel)}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nav a:focus-visible,.toc a:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.lede{color:var(--ink2);max-width:68ch}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.toc a{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.toc b{display:block;font-family:var(--display);font-size:16px}
+.toc span{font-size:13px;color:var(--mute)}
+section.s{display:flex;flex-direction:column;gap:14px;scroll-margin-top:16px}
+.s>p,.s .prose{color:var(--ink2);max-width:72ch}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.find{display:flex;flex-direction:column;gap:6px}
+.find b{font-family:var(--display);font-size:17px;font-weight:600;color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+th{text-align:left;font-weight:500;font-size:12px;color:var(--mute);padding:10px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);letter-spacing:.03em;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+td:first-child{color:var(--ink);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.p{font-size:11.5px;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p-inc{background:var(--upa-soft);color:var(--upa)} .p-bjp{background:var(--nda-soft);color:var(--nda)} .p-oth{background:var(--oth-soft);color:var(--oth)}
+.bar{display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.bar i{display:block;height:10px;border-radius:0 3px 3px 0;min-width:2px}
+.note{font-size:12.5px;color:var(--mute)}
+.flag{font-size:11px;font-family:var(--mono);color:var(--mute);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.src{font-size:12px;color:var(--mute)} .src a{color:var(--mute);overflow-wrap:anywhere}
+.disc{font:inherit;font-size:12.5px;font-weight:500;padding:4px 12px;border-radius:999px;border:1px solid var(--disc-line);background:var(--disc);color:var(--disc-ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px;align-self:flex-start}
+.disc[aria-expanded="true"]{background:var(--disc-ink);color:var(--disc)}
+.disc:focus-visible{outline:2px solid var(--disc-ink);outline-offset:2px}
+.gz-note{font-size:12.5px;color:var(--mute);margin:0 0 6px} .gz-note a{color:var(--ink2)}
+.thread-box{border-top:1px dashed var(--line);padding-top:10px}
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;font-size:13.5px;color:var(--ink2)}
+.method b{display:block;color:var(--ink);margin-bottom:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.pc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.pc>div{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--pc,var(--line));border-radius:10px;padding:14px 16px;min-width:0}
+.pc h4{margin:0 0 6px;font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.pc ul{margin:0;padding-left:18px;color:var(--ink2);font-size:14px;display:flex;flex-direction:column;gap:6px}
+.pc .a{--pc:#4f8a5b} .pc .b{--pc:#b5643c} .pc .c{--pc:var(--mute)}
+.take{font-size:14px;color:var(--ink2);background:var(--tie-soft);border-radius:8px;padding:10px 14px;max-width:none}
+.take b{color:var(--ink)}
+.v{font-size:11.5px;padding:2px 8px;border-radius:4px;white-space:nowrap;font-weight:500}
+.v-yes{background:#e2f0e2;color:#2f6b32} .v-part{background:#f6ecd4;color:#8a5f00} .v-no{background:#f6e1e0;color:#a33636} .v-open{background:var(--tie-soft);color:var(--ink2)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .v-yes{background:#1c3320;color:#8fd092}:root:not([data-theme="light"]) .v-part{background:#352b14;color:#e0b453}:root:not([data-theme="light"]) .v-no{background:#3a1f1f;color:#e58a8a}}
+:root[data-theme="dark"] .v-yes{background:#1c3320;color:#8fd092}:root[data-theme="dark"] .v-part{background:#352b14;color:#e0b453}:root[data-theme="dark"] .v-no{background:#3a1f1f;color:#e58a8a}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{font:inherit;font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink2);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
+.tally{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tally .panel h3{margin-bottom:8px}
+.tally dl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:0;font-size:14px}
+.tally dt{color:var(--ink2)} .tally dd{margin:0;font-variant-numeric:tabular-nums;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav" aria-label="Site"><a href="./">Scorecard</a><a href="events.html">Events &amp; reforms</a><a href="wealth.html">Wealth, land &amp; names</a><a href="opposition.html" aria-current="page">Opposition &amp; protest</a></nav>
+
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <p class="eyebrow">India · accountability</p>
+    <h1>Opposition &amp; Protest</h1>
+    <p class="lede">A democracy needs a government that tolerates dissent and an opposition that holds it to account honestly. This page checks both: which charges each party raised in opposition and whether courts or auditors later backed them, where parties changed their stand once in power, what investigations found about foreign money, and how governments of every party have handled protests.</p>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#charges"><b>Did the charges hold up?</b><span>Issues raised in opposition vs findings</span></a>
+    <a href="#uturns"><b>Stands reversed in power</b><span>Opposed it, then did it</span></a>
+    <a href="#parliament"><b>Conduct in Parliament</b><span>Disruption, scrutiny, suspensions</span></a>
+    <a href="#foreign"><b>Foreign money &amp; links</b><span>Findings, not allegations</span></a>
+    <a href="#protests"><b>How governments treat protest</b><span>Centre and states, all parties</span></a>
+  </nav>
+
+  <section class="s" id="charges">
+    <h2>Did the charges hold up?</h2>
+    <p>The main charges each party made in opposition, checked against what courts, the CAG or regulators later found. A charge "not upheld" by a court is not proof it was false, and a regulator's clearance can itself be disputed.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Charge</th><th>Raised by</th><th>What was later found</th><th>Outcome</th></tr></thead>
+      <tbody id="chargeRows"></tbody>
+    </table></div>
+    <div class="tally" id="tally"></div>
+    <button class="disc" data-term="Opposition / Did the charges hold up" data-title="Opposition / Did the charges hold up" aria-controls="t-charges">Discuss this section</button>
+    <div class="thread-box" id="t-charges" hidden><div class="gz"></div></div>
+  </section>
+
+  <section class="s" id="uturns">
+    <h2>Stands reversed in power</h2>
+    <p>Both parties attacked policies in opposition that they later adopted, or proposed policies they later fought.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Policy</th><th>Party</th><th>In opposition</th><th>In power</th></tr></thead>
+      <tbody>
+        <tr><td>GST</td><td><span class="p p-bjp">BJP</span></td><td>Gujarat under Modi opposed the UPA's GST design.</td><td>Implemented GST in July 2017.</td></tr>
+        <tr><td>Aadhaar</td><td><span class="p p-bjp">BJP</span></td><td>Modi criticised the scheme before 2014.</td><td>Passed the Aadhaar Act 2016 as a money bill and expanded its use.</td></tr>
+        <tr><td>India–US nuclear deal</td><td><span class="p p-bjp">BJP</span></td><td>Voted against the UPA in the 2008 confidence vote.</td><td>Called its own opposition a "mistake" in 2016.</td></tr>
+        <tr><td>Land acquisition</td><td><span class="p p-bjp">BJP</span></td><td>Supported the 2013 Act.</td><td>Tried to dilute it by ordinance in Dec 2014; the ordinance lapsed.</td></tr>
+        <tr><td>GST</td><td><span class="p p-inc">INC</span></td><td>Called the NDA's version a "Gabbar Singh Tax".</td><td>Had proposed GST itself while in government.</td></tr>
+        <tr><td>Market reform (APMC)</td><td><span class="p p-inc">INC</span></td><td>Opposed the 2020 farm laws.</td><td>Its 2019 manifesto promised to repeal the APMC Act; Congress says that was different.</td></tr>
+      </tbody>
+    </table></div>
+    <button class="disc" data-term="Opposition / Stands reversed in power" data-title="Opposition / Stands reversed in power" aria-controls="t-uturns">Discuss this section</button>
+    <div class="thread-box" id="t-uturns" hidden><div class="gz"></div></div>
+  </section>
+
+  <section class="s" id="parliament">
+    <h2>Conduct in Parliament</h2>
+    <div class="grid2">
+      <div class="panel find"><b>When the BJP was in opposition</b><p class="prose">Whole sessions were lost: Winter 2010 (Lok Sabha worked 5% of its time) over the demand for a joint committee on 2G, Winter 2013 (8%) and Budget 2014 (21%). The 15th Lok Sabha (2009–14) was one of the most disrupted.</p></div>
+      <div class="panel find"><b>When Congress is in opposition</b><p class="prose">Winter 2016 (15%) over demonetisation, Monsoon 2025 (29%) and Monsoon 2026 (15%). In 2023 the ruling BJP itself stalled the Budget session demanding an apology from Rahul Gandhi.</p></div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Lok Sabha</th><th>Bills sent to committees</th><th>Other signs</th></tr></thead>
+      <tbody>
+        <tr><td>14th (2004–09, UPA)</td><td><div class="bar"><i style="width:60px;background:var(--upa)"></i>60%</div></td><td>—</td></tr>
+        <tr><td>15th (2009–14, UPA)</td><td><div class="bar"><i style="width:71px;background:var(--upa)"></i>71%</div></td><td>Frequent washouts led by the opposition</td></tr>
+        <tr><td>16th (2014–19, NDA)</td><td><div class="bar"><i style="width:25px;background:var(--nda)"></i>25%</div></td><td>Sat 20% more hours than the 15th</td></tr>
+        <tr><td>17th (2019–24, NDA)</td><td><div class="bar"><i style="width:16px;background:var(--nda)"></i>16%</div></td><td>Fewest sittings of any full term (274); 206 MP suspensions, 146 in Dec 2023 alone; 35% of bills debated under an hour</td></tr>
+        <tr><td>18th (2024–, NDA)</td><td class="note">not yet published</td><td>53% of bills passed in the same session they were introduced; in Monsoon 2026, 7 of 11 bills passed in five minutes or less</td></tr>
+      </tbody>
+    </table></div>
+    <div class="pc">
+      <div class="b"><h4>Opposition's share of the blame</h4><ul><li>Both parties in opposition have treated shutting down Parliament as a tactic, which wastes the time they need to question ministers.</li></ul></div>
+      <div class="b"><h4>Government's share of the blame</h4><ul><li>Committee scrutiny of bills fell from 71% to 16% after 2014, record suspensions removed most of the opposition in 2023, and many bills now pass in minutes.</li></ul></div>
+    </div>
+    <button class="disc" data-term="Opposition / Conduct in Parliament" data-title="Opposition / Conduct in Parliament" aria-controls="t-parliament">Discuss this section</button>
+    <div class="thread-box" id="t-parliament" hidden><div class="gz"></div></div>
+  </section>
+
+  <section class="s" id="foreign">
+    <h2>Foreign money &amp; links</h2>
+    <p>Allegations of "foreign hands" are common on both sides. This table separates what an investigation or court actually found from what was only claimed.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Matter</th><th>Party</th><th>What was established</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Donations from Vedanta's UK-based group</td><td><span class="p p-bjp">BJP</span> <span class="p p-inc">INC</span></td><td>Delhi High Court (2014) found both parties broke the foreign-contribution law. Parliament then changed the law in 2016 and 2018 to legalise such donations retrospectively; the 2018 change passed without debate.</td><td><span class="v v-yes">Court finding</span></td></tr>
+        <tr><td>Rajiv Gandhi Foundation funding</td><td><span class="p p-inc">INC-linked</span></td><td>Its foreign-contribution licence was cancelled in 2022; the Home Minister told Parliament this included money from the Chinese embassy in 2005–06.</td><td><span class="v v-yes">Govt finding</span></td></tr>
+        <tr><td>Congress–Communist Party of China MoU (2008)</td><td><span class="p p-inc">INC</span></td><td>The Supreme Court called it "serious" but declined to order a probe (2020). No finding since.</td><td><span class="v v-open">No finding</span></td></tr>
+        <tr><td>Links to George Soros-funded groups (2024 claim)</td><td><span class="p p-inc">INC</span> (alleged by BJP)</td><td>No Indian investigation reported a finding. The US government called the claims disappointing, and the French outlet cited said its reporting was misused.</td><td><span class="v v-open">No finding</span></td></tr>
+        <tr><td>Cambridge Analytica (2018)</td><td><span class="p p-bjp">BJP</span> <span class="p p-inc">INC</span> (each accused the other)</td><td>CBI registered a case against the firms for data harvesting (2021). No party was charged.</td><td><span class="v v-open">No finding</span></td></tr>
+        <tr><td>Farm-protest "toolkit" (2021)</td><td>Activists (alleged by govt)</td><td>A Delhi court granted Disha Ravi bail, calling the evidence "scanty and sketchy"; police have reportedly considered closing the case.</td><td><span class="v v-no">Not upheld so far</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="take"><b>What the record shows:</b> the only court ruling of illegal foreign funding to a party covers both the BJP and Congress, and both let the law be changed afterwards. Other foreign-link charges against either side have not been established.</p>
+    <button class="disc" data-term="Opposition / Foreign money and links" data-title="Opposition / Foreign money and links" aria-controls="t-foreign">Discuss this section</button>
+    <div class="thread-box" id="t-foreign" hidden><div class="gz"></div></div>
+  </section>
+
+  <section class="s" id="protests">
+    <h2>How governments treat protest</h2>
+    <p>Major protests and how the government in charge responded. Deaths are those reported in police or security-force action unless stated. Filter by the party that ran the government responsible.</p>
+    <div class="chips" id="pf" role="group" aria-label="Filter by party in power"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Protest</th><th>Govt responsible</th><th>Response</th><th>Outcome</th></tr></thead>
+      <tbody id="protestRows"></tbody>
+    </table></div>
+    <div class="pc">
+      <div class="c"><h4>Patterns across parties</h4><ul>
+        <li>Police firing deaths have happened under Congress, BJP, CPI(M), AIADMK and coalition governments alike.</li>
+        <li>The largest mass detention was the Emergency (Congress, 1975–77); the largest recent ones were in Kashmir (2016 and 2019).</li></ul></div>
+      <div class="c"><h4>What changed after 2014</h4><ul>
+        <li>Long pre-trial detention under the anti-terror law UAPA for protest-linked cases: Bhima Koregaon accused waited years without trial, and Umar Khalid and Sharjeel Imam have been jailed over six years untried. UPA governments had toughened UAPA in 2008 and 2012.</li>
+        <li>CIVICUS, an international civil-society monitor, cut India from "obstructed" to "repressed" in 2019; it has no rating for the UPA years.</li></ul></div>
+      <div class="c"><h4>Protests that won</h4><ul>
+        <li>Under the UPA: Anna Hazare (Lokpal Act), Nirbhaya (tougher rape law), Telangana (statehood).</li>
+        <li>Under the NDA: farm laws repealed, 274 recovery notices to anti-CAA protesters withdrawn, Ladakh leader's detention revoked for talks.</li></ul></div>
+    </div>
+    <button class="disc" data-term="Opposition / How governments treat protest" data-title="Opposition / How governments treat protest" aria-controls="t-protests">Discuss this section</button>
+    <div class="thread-box" id="t-protests" hidden><div class="gz"></div></div>
+  </section>
+
+  <section class="panel" style="display:flex;flex-direction:column;gap:12px">
+    <h2>So which party is the better opposition?</h2>
+    <div class="grid2">
+      <div class="find"><b style="color:var(--nda)">BJP in opposition (2004–14)</b><p class="prose">Its biggest charges, on coal and 2G allocation, were largely borne out by the Supreme Court, though the 2G trial ended in acquittals. It also shut down Parliament repeatedly and opposed policies (GST, Aadhaar, nuclear deal) it later adopted.</p></div>
+      <div class="find"><b style="color:var(--upa)">Congress in opposition (2014–)</b><p class="prose">Its challenge to electoral bonds was upheld and its warnings on demonetisation match the data, but its Rafale, Adani and vote-theft charges have not been upheld by courts or regulators. It too has stalled sessions and fought reforms it once proposed.</p></div>
+    </div>
+    <p class="take">Neither party has a clean record. Each has been right on some big issues and has also used obstruction and reversals for political advantage. The table above lets you judge the specific charges for yourself.</p>
+  </section>
+
+  <section class="panel" style="display:flex;flex-direction:column;gap:8px">
+    <h2>Sources</h2>
+    <p class="src" id="srcList"></p>
+  </section>
+</div>
+
+<script>
+const C=[
+ ["2G spectrum allocation","bjp","CAG estimated a ₹1.76 lakh crore presumptive loss; Supreme Court cancelled 122 licences (2012). Trial court acquitted all accused (2017); CBI appeal pending.","part","Partly upheld"],
+ ["Coal block allocation","bjp","Supreme Court cancelled 214 coal blocks allocated 1993–2011 as illegal (2014); several convictions followed.","yes","Upheld"],
+ ["India–US nuclear deal","bjp","BJP later called its own opposition a mistake (2016).","no","Dropped by BJP"],
+ ["Demonetisation (2016)","inc","RBI: 99.3% of banned notes returned; peer-reviewed studies found an output hit.","yes","Backed by data"],
+ ["Rafale jet deal","inc","Supreme Court refused a probe (2018) and dismissed review petitions (2019).","no","Not upheld"],
+ ["Electoral bonds","inc","Supreme Court struck the scheme down as unconstitutional (Feb 2024).","yes","Upheld"],
+ ["Pegasus spyware","inc","Court's expert panel found malware on 5 of 29 phones but no proof it was Pegasus; the government did not cooperate (2022).","part","Inconclusive"],
+ ["Adani / Hindenburg","inc","Supreme Court refused an independent probe (2024); SEBI found allegations not established (Sep 2025).","no","Not upheld"],
+ ["“Vote theft” in electoral rolls (2025)","inc","Election Commission rejected the claims and asked for a sworn declaration; no independent finding yet. Separate 2026 report of internal dissent in the Commission.","no","Not upheld so far"],
+ ["Law letting government pick Election Commissioners","inc","Supreme Court split (Sep 2026) and sent the challenge to a larger bench.","open","Pending"]
+];
+const vc={yes:"v-yes",part:"v-part",no:"v-no",open:"v-open"};
+const pty={bjp:'<span class="p p-bjp">BJP</span>',inc:'<span class="p p-inc">INC</span>'};
+document.getElementById("chargeRows").innerHTML=C.map(c=>`<tr><td>${c[0]}</td><td>${pty[c[1]]}</td><td>${c[2]}</td><td><span class="v ${vc[c[3]]}">${c[4]}</span></td></tr>`).join("");
+function tal(p){const r=C.filter(c=>c[1]===p),n=k=>r.filter(c=>c[3]===k).length;return `<div class="panel"><h3>${p==="bjp"?"BJP charges (as opposition, 2004–14)":"Congress charges (as opposition, 2014–)"}</h3><dl><dt>Upheld or backed by data</dt><dd>${n("yes")}</dd><dt>Partly upheld / inconclusive</dt><dd>${n("part")}</dd><dt>Not upheld or dropped</dt><dd>${n("no")}</dd><dt>Pending</dt><dd>${n("open")}</dd></dl></div>`}
+document.getElementById("tally").innerHTML=tal("bjp")+tal("inc")+'<p class="note" style="grid-column:1/-1">Only the charges listed above; the BJP list is shorter because fewer of its 2004–14 charges were tested in court or by audit, not because it raised fewer.</p>';
+
+const P=[
+ ["The Emergency","1975–77","inc","Centre","Over 1 lakh people detained without trial; press censored; elections suspended.","Congress lost the 1977 election; Constitution amended to prevent a repeat."],
+ ["Mudigonda land protest, Andhra Pradesh","2007","inc","State","Police firing killed 7–8 people.","—"],
+ ["Nandigram SEZ protest, West Bengal","2007","oth","State (CPI(M))","Police firing killed 14.","SEZ plan dropped; the Left lost power in 2011."],
+ ["Gujjar quota agitation, Rajasthan","2007–08","bjp","State","At least 72 died over two years, many in police firing.","Quota granted later (1% in 2015, 5% in 2019)."],
+ ["Kashmir unrest","2010","inc","Centre + state (NC–INC)","About 110 killed, mostly by security forces.","—"],
+ ["Anna Hazare anti-corruption movement","2011","inc","Centre","Hazare arrested on 16 Aug 2011, released within days; Ramdev's camp cleared at night in June, which the Supreme Court later faulted.","Lokpal Act passed in 2013."],
+ ["Maval pipeline protest, Maharashtra","2011","inc","State (INC–NCP)","Police firing killed 3 farmers.","—"],
+ ["Nirbhaya protests, Delhi","2012","inc","Centre","Prohibitory orders, water cannon and tear gas at Raisina Hill.","Tougher rape law passed in 2013."],
+ ["Telangana statehood agitation","2009–14","inc","Centre","Campus crackdowns during a years-long movement.","Telangana state formed in June 2014."],
+ ["Patidar quota agitation, Gujarat","2015","bjp","State","About 14 dead; leader Hardik Patel charged with sedition.","Sedition cases later withdrawn."],
+ ["Jat quota agitation, Haryana","2016","bjp","State","About 30 dead; state's own inquiry found administrative failure.","—"],
+ ["JNU sedition case, Delhi","2016","bjp","Centre (Delhi Police)","Students including Kanhaiya Kumar charged with sedition.","Sedition law on hold since 2022; trial unresolved."],
+ ["Kashmir unrest","2016","bjp","Centre + state (PDP–BJP)","Over 100 killed, 117+ blinded by pellets, 53-day curfew, about 8,600 arrests.","—"],
+ ["Mandsaur farmers, Madhya Pradesh","2017","bjp","State","Police firing killed 6 farmers.","State commission cleared the police."],
+ ["Sterlite plant protest, Thoothukudi","2018","oth","State (AIADMK)","Police firing killed 13; inquiry called it unprovoked.","Plant closed permanently."],
+ ["Bhima Koregaon / Elgar Parishad arrests","2018–","bjp","State, then Centre (NIA)","16 activists held under UAPA; Stan Swamy, 84, died in custody (2021).","Most now on bail; trial not yet begun."],
+ ["Anti-CAA protests","2019–20","bjp","Centre + BJP states","Police entered Jamia campus; 23 deaths in UP, 5 in Assam, 2 in Mangaluru; internet cuts; activists held under UAPA.","UP withdrew 274 damage-recovery notices after Supreme Court pressure; Umar Khalid and Sharjeel Imam still jailed untried (bail refused Sep 2026)."],
+ ["Farm law protests","2020–21","bjp","Centre","Roads barricaded and dug up, internet cuts; unions report about 700 deaths during the protest; 4 farmers and a journalist killed at Lakhimpur Kheri by a vehicle linked to a minister's son.","Laws repealed (Nov 2021); Lakhimpur trial ongoing."],
+ ["Wrestlers' protest, Delhi","2023","bjp","Centre","FIR against BJP MP Brij Bhushan filed only after the Supreme Court stepped in; protesters detained on 28 May 2023.","He was acquitted in Aug 2026; appeal filed."],
+ ["Farmers' march, Punjab–Haryana border","2024","bjp","State (Haryana)","Farmer Shubhkaran Singh killed at Khanauri.","High Court ordered a judicial probe."],
+ ["Ladakh statehood protest","2025","bjp","Centre (Union Territory)","Police firing killed 4; Sonam Wangchuk detained under the National Security Act.","Detention revoked in Mar 2026 for talks; demands not yet met."]
+];
+let pf="all";
+const PF=[["all","All"],["inc","Congress-led"],["bjp","BJP-led"],["oth","Other parties"]];
+const tag=p=>p==="inc"?'<span class="p p-inc">INC</span>':p==="bjp"?'<span class="p p-bjp">BJP</span>':'<span class="p p-oth">Other</span>';
+function renderP(){
+ document.getElementById("pf").innerHTML=PF.map(([k,l])=>`<button class="chip" data-k="${k}" aria-pressed="${k===pf}">${l}</button>`).join("")+`<span class="note">${P.filter(r=>pf==="all"||r[2]===pf).length} of ${P.length}</span>`;
+ document.querySelectorAll("#pf .chip").forEach(b=>b.onclick=()=>{pf=b.dataset.k;renderP()});
+ document.getElementById("protestRows").innerHTML=P.filter(r=>pf==="all"||r[2]===pf).map(r=>`<tr><td>${r[0]}<div class="note">${r[1]}</div></td><td>${tag(r[2])}<div class="note">${r[3]}</div></td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join("");
+}
+renderP();
+
+const S=[["2G licences cancelled (Business Today)","https://www.businesstoday.in/industry/telecom/story/supreme-court-cancels-122-2g-spectrum-licences-a-raja-28471-2012-02-02"],["2G acquittal appeal (Scroll)","https://amp.scroll.in/latest/1065649/2g-spectrum-scam-delhi-high-court-allows-cbi-to-challenge-acquittal-of-a-raja-others"],["Coal blocks cancelled (Down To Earth)","https://www.downtoearth.org.in/environment/supreme-court-cancels-allotment-of-214-coal-blocks-46561"],["BJP on nuclear deal 'mistake' (Business Standard)","https://www.business-standard.com/article/economy-policy/support-gst-don-t-repeat-our-mistake-on-nuke-deal-bjp-to-congress-116071000679_1.html"],["Rafale review (SC Observer)","https://www.scobserver.in/reports/manohar-lal-sharma-narendra-modi-rafale-fighter-jet-deal-review-judgment-plain-english/"],["Electoral bonds (SC Observer)","https://www.scobserver.in/cases/association-for-democratic-reforms-electoral-bonds-case-background/"],["Pegasus panel (Business Standard)","https://www.business-standard.com/article/current-affairs/malware-found-in-5-out-of-29-phone-no-conclusive-evidence-of-pegasus-sc-122082500444_1.html"],["Adani–Hindenburg SC (LiveLaw)","https://www.livelaw.in/top-stories/supreme-court-adani-hindenburg-endorses-sebi-probe-regulations-245712"],["SEBI Adani order (India TV)","https://www.indiatvnews.com/business/news/hindenburg-case-sebi-gives-clean-chit-to-adani-group-says-allegations-are-not-established-2025-09-18-1008848"],["EC on 'vote theft' (AIR)","https://www.newsonair.gov.in/eci-rejects-rahul-gandhis-vote-theft-allegations-demands-apology-or-signed-declaration"],["EC appointments split (ThePrint)","https://theprint.in/judiciary/sc-bench-split-on-who-should-hear-challenge-to-ec-appointments-law-asks-cji-to-form-5-judge-bench/3050961/"],["BJP opposed GST (Governance Now)","https://www.governancenow.com/news/regular-story/-recalling-a-time-when-bjp-opposed-gst--"],["Modi on Aadhaar (BOOM)","https://www.boomlive.in/narendra-modi-from-aadhaar-critic-to-champion-a-factcheck"],["Land ordinance (PRS)","https://prsindia.org/billtrack/the-right-to-fair-compensation-and-transparency-in-land-acquisition-rehabilitation-and-resettlement-second-amendment-bill-2015"],["Congress APMC manifesto (The Week)","https://www.theweek.in/news/india/2020/09/18/bjp-and-congress-are-on-the-same-page-here-sanjay-jha-on-farmers-bills.html"],["Chidambaram rebuttal (Tribune)","https://www.tribuneindia.com/news/nation/chidambaram-refutes-bjp-charge-on-cong-promise-of-apmc-act-abolition-143019"],["17th Lok Sabha functioning (PRS)","https://prsindia.org/parliamenttrack/vital-stats/functioning-of-the-17th-lok-sabha"],["16th Lok Sabha functioning (PRS)","https://prsindia.org/parliamenttrack/vital-stats/functioning-of-16th-lok-sabha-2014-2019"],["Monsoon 2025 (PRS)","https://prsindia.org/parliamenttrack/vital-stats/parliament-functioning-in-monsoon-session-2025"],["2010 winter session washout (Deccan Herald)","https://www.deccanherald.com/india/parliament-adjourns-sine-die-winter-session-washed-out-on-2g-scam-115785.html"],["Bills passed quickly, 2026 (Business Standard)","https://www.business-standard.com/india-news/parliament-sees-rise-in-bills-introduced-and-passed-in-same-session-prs-126082200556_1.html"],["BJP stalls session, 2023 (Tribune)","https://www.tribuneindia.com/news/nation/budget-session-parliament-disrupted-for-2nd-day-over-rahul-gandhis-remarks-bjp-firm-on-apology-488035"],["FCRA ruling on BJP and Congress (Business Standard)","https://www.business-standard.com/article/elections-2014/foreign-funding-delhi-hc-directs-action-against-cong-bjp-114032800604_1.html"],["Retrospective FCRA change (Business Standard)","https://www.business-standard.com/article/economy-policy/lok-sabha-passes-bill-to-prevent-scrutiny-of-foreign-poll-funds-to-parties-118031800292_1.html"],["RGF licence cancelled (Business Standard)","https://www.business-standard.com/article/current-affairs/rajiv-gandhi-foundation-s-fcra-licence-cancelled-for-violating-law-122102300116_1.html"],["Congress–CPC MoU plea (LiveLaw)","https://www.livelaw.in/top-stories/plea-filed-before-sc-against-inc-sonia-gandhi-rahul-gandhi-seeking-investigation-into-mou-158842"],["US on Soros claims (Business Today)","https://www.businesstoday.in/india/story/disappointing-that-us-rejects-bjps-charge-of-american-deep-state-behind-efforts-to-destabilise-india-456586-2024-12-07"],["Cambridge Analytica CBI case (Tribune)","https://www.tribuneindia.com/news/nation/data-harvesting-cbi-case-against-analytica-gsr-202275"],["Disha Ravi bail (The Quint)","https://www.thequint.com/news/law/disha-ravi-bail-order-toolkit-case-patiala-house-court-judge-dharmender-rana"],["The Emergency (Wikipedia)","https://en.wikipedia.org/wiki/The_Emergency_(India)"],["Mudigonda firing (Al Jazeera)","https://www.aljazeera.com/news/2007/7/29/police-shoot-protesters-in-india"],["Nandigram violence (Wikipedia)","https://en.wikipedia.org/wiki/Nandigram_violence"],["Gurjar agitation (Wikipedia)","https://en.wikipedia.org/wiki/Gurjar_agitation_in_Rajasthan"],["2010 Kashmir unrest (Wikipedia)","https://en.wikipedia.org/wiki/2010_Kashmir_unrest"],["Anna Hazare movement (Wikipedia)","https://en.wikipedia.org/wiki/2011_Indian_anti-corruption_movement"],["Maval firing (Deccan Herald)","https://www.deccanherald.com/amp/story/india%2Fthree-killed-police-firing-protesting-2435028"],["Nirbhaya protests and law change (News Minute)","https://www.thenewsminute.com/news/unprecedented-protests-change-laws-how-nirbhaya-case-moved-needle-120693"],["Patidar sedition withdrawal (Tribune)","https://www.tribuneindia.com/news/india/court-allows-gujarat-govts-plea-to-withdraw-sedition-cases-against-hardik-patel-4-others/amp"],["Jat agitation report (The Wire)","https://thewire.in/politics/the-prakash-singh-committee-report-administrative-failure-and-other-learnings-from-haryanas-jat-riots"],["JNU sedition chargesheet (ThePrint)","https://theprint.in/india/governance/kanhaiya-kumar-umar-khalid-charged-with-sedition-for-2016-jnu-protest/177752/"],["2016 Kashmir unrest (Wikipedia)","https://en.wikipedia.org/wiki/2016%E2%80%932017_Kashmir_unrest"],["Mandsaur firing (SabrangIndia)","https://sabrangindia.in/farmers-stood-basic-rights-were-shot-six-died-mandsaur-mp-2017/"],["Thoothukudi inquiry (Down To Earth)","https://www.downtoearth.org.in/governance/thoothukudi-firing-inquiry-report-finds-police-revenue-officials-responsible-for-13-deaths-85673"],["Bhima Koregaon delays (Scroll)","https://scroll.in/article/1078129/bail-for-bhima-koregaon-accused-highlights-extraordinary-delay-in-trial"],["Anti-CAA protests in UP (Wikipedia)","https://en.wikipedia.org/wiki/Citizenship_Amendment_Act_protests_in_Uttar_Pradesh"],["UP recovery notices withdrawn (Tribune)","https://www.tribuneindia.com/news/nation/up-govt-tells-sc-it-has-withdrawn-274-notices-issued-to-anti-caa-protesters-for-recovery-of-damages-371000/"],["Khalid and Imam bail refused (India TV)","https://www.indiatvnews.com/delhi/umar-khalid-sharjeel-imam-denied-bail-again-as-delhi-hc-rejects-pleas-in-riots-conspiracy-case-2026-09-30-1055697"],["Farm protest deaths (Al Jazeera)","https://www.aljazeera.com/news/2021/11/30/human-cost-india-farmer-protest-agriculture"],["Lakhimpur Kheri bail (AIR)","https://www.newsonair.gov.in/sc-grants-bail-to-ashish-mishra-in-lakhimpur-kheri-violence-case-directs-trial-court-to-expedite-hearing"],["Wrestlers' case appeal (ETV Bharat)","https://www.etvbharat.com/en/sports/4-women-wrestlers-challenge-acquittal-of-brij-bhushan-in-sexual-harassment-case-enn26092504538"],["Shubhkaran Singh probe (Tribune)","https://www.tribuneindia.com/news/punjab/punjab-and-haryana-high-court-orders-judicial-inquiry-into-farmer-shubhkaran-singhs-death-598205"],["Wangchuk released (Al Jazeera)","https://aljazeera.com/news/2026/3/14/india-releases-ladakh-activist-sonam-wangchuk-after-six-months-in-jail"],["CIVICUS downgrade (Scroll)","https://scroll.in/latest/945811/indias-civic-space-rating-downgraded-to-repressed-by-international-organisation-civicus-monitor"]];
+document.getElementById("srcList").innerHTML=S.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a>`).join(" · ");
+</script>
+<script src="comments.js"></script>
+<script>Discuss.wire(document);Discuss.reopen();</script>
+</body>
+</html>
