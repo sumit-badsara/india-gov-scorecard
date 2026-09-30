@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Indicator-based comparison of India's UPA (2004–14) and NDA (2014–26) governments across 14 areas, with adjustable weights.">
+<title>UPA vs NDA Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ledger-style report — tenure strip, live tally, weight panel, then one section per dimension with indicator rows */
+:root{
+  --bg:#f6f7f5; --panel:#ffffff; --ink:#1c2321; --ink2:#4d5753; --mute:#7c8682; --line:#dfe3e0;
+  --upa:#1f7a78; --upa-soft:#d7ecea; --nda:#7a3f8f; --nda-soft:#ecdff0; --tie:#9aa19e; --tie-soft:#eceeed;
+  --display:"Spectral",Georgia,serif; --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331;
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --tie:#7c8682; --tie-soft:#262c2a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141817; --panel:#1b201f; --ink:#e7ebe9; --ink2:#b3bcb8; --mute:#87918d; --line:#2c3331;
+  --upa:#4fb8b4; --upa-soft:#173533; --nda:#c08ad3; --nda-soft:#35243b; --tie:#7c8682; --tie-soft:#262c2a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:28px 56px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(28px,5vw,40px)}
+h2{font-size:22px}
+p{margin:0}
+.lede{color:var(--ink2);max-width:66ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.tenure{display:grid;grid-template-columns:10fr 12.33fr;gap:3px;font-size:12px;font-family:var(--mono)}
+.tenure div{padding:8px 10px;border-radius:4px;min-width:0}
+.tenure .u{background:var(--upa-soft);color:var(--upa)} .tenure .n{background:var(--nda-soft);color:var(--nda)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+.tally{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tally .who{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+.big{font-family:var(--display);font-size:52px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:18px;color:var(--mute);font-family:var(--body);font-weight:400}
+.bar{height:10px;border-radius:5px;background:var(--tie-soft);display:flex;overflow:hidden;margin-top:14px;grid-column:1/-1}
+.bar span{display:block;height:100%;transition:width .3s}
+.verdict{grid-column:1/-1;font-size:14px;color:var(--ink2)}
+.controls{display:flex;flex-direction:column;gap:18px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{font:inherit;font-size:13px;padding:8px 14px;border:0;background:transparent;color:var(--ink2);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--upa);outline-offset:2px}
+.hint{font-size:13px;color:var(--mute);max-width:70ch}
+.weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 24px}
+.w{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;font-size:13px}
+.w input{grid-column:1/-1;width:100%;accent-color:var(--ink2)}
+.w output{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{font:inherit;font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink2);cursor:pointer}
+.dims{display:flex;flex-direction:column;gap:14px}
+.dim{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.dim summary{list-style:none;cursor:pointer;padding:16px 20px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center}
+.dim summary::-webkit-details-marker{display:none}
+.dim .name{font-family:var(--display);font-size:19px;font-weight:600}
+.dim .mini{display:flex;gap:10px;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;align-items:center}
+.pill{padding:2px 8px;border-radius:999px;font-size:12px}
+.pu{background:var(--upa-soft);color:var(--upa)} .pn{background:var(--nda-soft);color:var(--nda)} .pt{background:var(--tie-soft);color:var(--ink2)}
+.dim .sub{grid-column:1/-1;font-size:13px;color:var(--mute)}
+.chev{transition:transform .2s;color:var(--mute)} details[open] .chev{transform:rotate(90deg)}
+.tbl{overflow-x:auto;border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:620px}
+th{text-align:left;font-weight:500;font-size:12px;color:var(--mute);padding:10px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);letter-spacing:.03em}
+td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.ind{font-weight:500;width:22%}
+td.v{width:26%;font-variant-numeric:tabular-nums}
+td.e{width:10%}
+.note{display:block;color:var(--mute);font-size:12px;margin-top:4px}
+.caveats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.caveats div{font-size:13.5px;color:var(--ink2);min-width:0}
+.caveats b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+.src{font-size:12.5px;color:var(--ink2);columns:2 280px;column-gap:28px}
+.src a{color:var(--ink2);overflow-wrap:anywhere}
+.src li{margin-bottom:4px;break-inside:avoid}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){.big{font-size:42px}.dim summary{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:14px">
+    <p class="eyebrow">India · Union governments compared on public data</p>
+    <h1>UPA vs NDA Scorecard</h1>
+    <p class="lede"><span id="cnt">Fourteen areas</span>, each indicator scored on data from neutral or official sources. Choose how to account for time in office, set how much each area matters to you, and the tally updates. Every score shows the numbers behind it.</p>
+    <div class="tenure" aria-label="Time in office">
+      <div class="u">UPA I &amp; II · May 2004 – May 2014 · 10.0 yrs</div>
+      <div class="n">NDA · May 2014 – Sep 2026 · 12.3 yrs and counting</div>
+    </div>
+  </header>
+
+  <section class="panel tally" aria-live="polite">
+    <div><div class="who"><span class="dot" style="background:var(--upa)"></span>UPA (2004–14)</div><div class="big" id="sU">–<small> / 100</small></div></div>
+    <div><div class="who"><span class="dot" style="background:var(--nda)"></span>NDA (2014–)</div><div class="big" id="sN">–<small> / 100</small></div></div>
+    <div class="bar"><span id="bU" style="background:var(--upa)"></span><span id="bN" style="background:var(--nda)"></span></div>
+    <p class="verdict" id="verdict"></p>
+  </section>
+
+  <section class="panel controls">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <h2>How to count time in office</h2>
+      <div class="seg" role="group" aria-label="Scoring lens">
+        <button id="lensRate" aria-pressed="true">Progress per year in office</button>
+        <button id="lensLevel" aria-pressed="false">Where things stood at the end</button>
+      </div>
+      <p class="hint" id="lensHint"></p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <h2>How much each area matters</h2>
+        <div class="presets">
+          <button data-p="equal">Equal</button>
+          <button data-p="rights">Rights first</button>
+          <button data-p="growth">Growth &amp; infra first</button>
+          <button data-p="security">Security &amp; stability first</button>
+        </div>
+      </div>
+      <div class="weights" id="weights"></div>
+    </div>
+  </section>
+
+  <section class="dims" id="dims" aria-label="Areas"></section>
+
+  <section class="panel" style="display:flex;flex-direction:column;gap:14px">
+    <h2>Read these scores with care</h2>
+    <div class="caveats">
+      <div><b>Different worlds</b>UPA governed through the 2004–08 global trade boom and the 2008 crash. NDA governed through slow world trade, COVID and the 2026 oil shock. Neither caused those.</div>
+      <div><b>Whose data</b>Infrastructure and welfare numbers are mostly self-reported by the government of the day. Freedom indices are expert-perception surveys that India's government disputes.</div>
+      <div><b>Scoring is blunt</b>Each indicator gives 1 point to the clearly better record, or half each when the gap is within measurement noise. Big and small wins count the same.</div>
+      <div><b>Choice of indicators</b>Picking what to measure is itself a judgement. Communal relations, federalism, judiciary and education quality are not scored here.</div>
+      <div><b>Things carry over</b>Many outcomes (highways, poverty, IMR) build on work started earlier. Some UPA laws were weakened or struck down later, and some NDA schemes extended UPA ones.</div>
+      <div><b>Endpoints matter</b>Market and currency returns depend heavily on start and end dates: UPA began just after the May 2004 crash, and NDA's figures end in the 2026 sell-off.</div>
+      <div><b>Not a verdict</b>The tally shows how these indicators add up under your weights. It is not an endorsement of either government.</div>
+    </div>
+  </section>
+
+  <section class="panel" style="display:flex;flex-direction:column;gap:10px">
+    <h2>Sources</h2>
+    <ul class="src" id="src"></ul>
+  </section>
+</div>
+
+<script>
+const D=[
+{k:"free",n:"Freedom of speech & democracy",s:"Press freedom, civil liberties, internet access",i:[
+ ["Press freedom rank (RSF)","106 (2005) → 140 (2014) · fell ~3.8 places/yr","140 (2014) → 157 of 180 (2026) · fell ~1.4 places/yr","u","n","RSF changed its method in 2022, so long comparisons are rough."],
+ ["Freedom House rating","“Free” throughout; 77/100 in the first post-2014 edition","62/100, “Partly Free” since the 2021 edition","u","u",""],
+ ["V-Dem Liberal Democracy Index","0.57 (2013); V-Dem dates the start of decline to 2008","≈0.30 (2025); classed an “electoral autocracy” since 2017","u","u","India's EAC-PM calls these perception indices methodologically flawed."],
+ ["Internet shutdowns","3 recorded in 2012 (tracking began that year)","Peak 134 (2018); 65 in 2025, among the world's highest","u","u","Most shutdowns are ordered by states, notably J&K."]]},
+{k:"trade",n:"Imports & exports",s:"Export growth, world share, deficit",i:[
+ ["Goods export growth","$76bn → $318bn · 15.4%/yr","$318bn → $446bn (2025) · 3.1%/yr","u","u","UPA rode a global trade boom; world trade barely grew after 2014."],
+ ["Share of world goods exports","0.8% → 1.7%","1.7% → about 1.6–1.8%","t","u",""],
+ ["Goods deficit as % of GDP (average)","7.2% (peaked 10.9% in 2012)","6.2% (about 8% in 2026)","n","n",""],
+ ["Machinery & electronics exports","$5bn → $23bn · 16.5%/yr","$23bn → $90bn · 13.4%/yr, led by phones","n","t","Faster growth from a small base under UPA; bigger dollar gains under NDA."]]},
+{k:"biz",n:"Ease of doing business",s:"Rankings, investment, reforms",i:[
+ ["World Bank Doing Business rank","116 (2006) → 134–142 (2014), worsening","142 → 63 of 190 (2020); index scrapped 2021","n","n","The index was discontinued over data irregularities; India's data was not implicated."],
+ ["Gross FDI inflows","$30bn/yr average ≈ 2.3% of GDP","$68bn/yr average ≈ 2.4% of GDP; net FDI near zero in FY25","t","t","Similar as a share of the economy."],
+ ["Major business reforms","Retrospective tax (2012), land law (2013), ‘policy paralysis’ years","GST, bankruptcy code, corporate tax cut, retro tax repealed; demonetisation disruption","n","n","This row is a judgement on the record, not a single number."]]},
+{k:"intl",n:"International relations & deals",s:"Trade agreements, strategic ties, crises",i:[
+ ["Trade agreements signed or concluded","5 (ASEAN, Korea, Japan, Malaysia, SAFTA) · 0.5/yr","9 (Mauritius, UAE, Australia, EFTA, UK, Oman, New Zealand, EU concluded, US interim) · 0.7/yr","n","n",""],
+ ["Landmark strategic outcomes","US civil nuclear deal and NSG waiver (2008); UNSC seat 2011–12","G20 presidency (2023), Quad summits; UNSC seat 2021–22","t","t",""],
+ ["Major external shocks","Mumbai attacks 2008, Depsang standoff 2013","Galwan clash 2020, Canada row 2023, US 50% tariffs 2025, Op Sindoor 2025","t","t","Both eras had serious crises; counting them is not a fair measure of diplomacy."]]},
+{k:"policy",n:"Policies for ordinary people",s:"Poverty, health, services, legal rights",i:[
+ ["Poverty","37.2% → 21.9% (2004-05 to 2011-12) · ≈2.2 pts/yr","27.1% (2011-12) → 5.3% (2022-23) on World Bank $3 line · ≈2 pts/yr","n","t","Different poverty lines and a 2022-23 survey change make this rough."],
+ ["Infant mortality (per 1,000 births)","58 → 39 · −3.9%/yr","39 → 24 (2024) · −4.9%/yr","n","t","UPA cut more deaths in absolute terms; NDA faster in percent."],
+ ["Basic services reach","Rural roads, NRHM, electrification push began","Tap water 17% → 82% of rural homes, near-universal electricity, 59 cr bank accounts, 10.6 cr LPG links","n","n","Usage gaps (refills, working taps, toilets) are documented."],
+ ["Legal entitlements","Made rights into law: NREGA, RTI, RTE, Food Security Act","Large schemes (free grain 81 cr, Ayushman 48 cr cards, PM-KISAN), mostly not statutory rights","u","u",""]]},
+{k:"infra",n:"Infrastructure",s:"Roads, railways, airports, metros",i:[
+ ["National highway building","≈12 km/day (FY14)","29–34 km/day (FY24–25)","n","n","Includes widening; some network growth is reclassification."],
+ ["Railway electrification","33% of broad gauge by 2014","99.6% (2026)","n","n",""],
+ ["New rail track laid","4.2 km/day (2009–14)","8.6 km/day (2014–25)","n","n",""],
+ ["Metro rail","≈65 → 248 km · ≈18 km/yr","248 → 1,155 km in 26 cities · ≈74 km/yr","n","n",""],
+ ["Operational airports","74 in 2014","165 in 2026","n","n","Count includes heliports and water aerodromes."],
+ ["Serious train accidents","118 in FY14 (down ~49% over the decade)","31 in FY25 (down ~74%)","n","n","Large disasters still occur (Balasore 2023)."],
+ ["Central capital spending","≈1.6% of GDP","≈3.1% of GDP","n","n","Part of the rise is spending moved onto the budget."],
+ ["Rural roads (PMGSY)","≈3.8 lakh km, 2000–14","≈3.8 lakh km, 2014–24","t","t","UPA's peak years were faster."]]},
+{k:"econ",n:"Economy & jobs",s:"Growth, inflation, income",i:[
+ ["Real GDP growth (average)","6.8% a year","6.3% a year (includes COVID)","t","t","UPA figures depend on a disputed back-series; a new 2022-23 base arrives Dec 2026."],
+ ["Consumer inflation (average)","8.0% (near 10% in 2009–13)","4.9% (inflation targeting from 2016)","n","n",""],
+ ["Real income per person growth","5.2% a year","4.9% a year (5.5% before COVID)","t","t","World Bank, constant 2015 dollars."],
+ ["Jobs and wages","Unemployment 2.2% (2011-12)","6.1% (2017-18) → 3.1% (2025); salaried real wages flat 2012–24","t","t","Survey methods changed, so the two eras are not directly comparable."]]},
+{k:"gov",n:"Governance & corruption",s:"Corruption perception, courts, transparency",i:[
+ ["Corruption perception (TI score)","36/100 (2013)","39/100 (2025)","t","t","Small moves within the index's error margin."],
+ ["Flagship decisions struck down by courts","Coal block allocations cancelled (2014); 2G accused later acquitted","Electoral bonds ruled unconstitutional (2024)","t","t",""],
+ ["Right to Information","Created the RTI Act (2005)","2019 amendment on commissioners; 2023 data law narrowed RTI","u","u",""]]},
+{k:"mkt",n:"Stock market",s:"Index returns, retail participation",i:[
+ ["Nifty 50 return in rupees","1,609 → 7,359 · 16.4%/yr","7,359 → 22,716 (29 Sep 2026) · 9.6%/yr","u","u","UPA's start was just after the May 2004 crash; NDA's end is in the 2026 fall. Endpoints matter a lot."],
+ ["Nifty 50 return in dollars","≈13.4%/yr","≈5.3%/yr","u","u","What a foreign investor actually earned, after the rupee's fall."],
+ ["Retail participation","Demat accounts ≈0.6 cr → 2.3 cr","23.8 cr demat accounts; record ₹32,297 cr monthly SIP flows (Aug 2026)","n","n","Domestic savers now absorb most foreign selling."]]},
+{k:"fx",n:"Currency & forex",s:"Rupee, reserves, external balance",i:[
+ ["Rupee vs US dollar","₹45 → ₹59 · weakened ≈2.7%/yr","₹59 → ₹96 · weakened ≈4.0%/yr; record low ₹96.6 (May 2026)","u","u","Adjusted for inflation, the rupee was roughly stable 2015–24 and fell ≈11% in 2025–26."],
+ ["Forex reserves","$118bn → $311bn · +10%/yr","$311bn → $766bn (Sep 2026) · +7.5%/yr","n","u",""],
+ ["Current account deficit","≈2% of GDP on average; peaked 4.8% (FY13)","≈1% on average; 0.6% in FY26","n","n",""],
+ ["Currency crises","2013 taper tantrum: rupee to ₹68.8, emergency FCNR deposit scheme raised $34bn","2026: record low, RBI sold $15bn+ in March, revived the same FCNR scheme","t","t","Both needed emergency measures."]]},
+{k:"fisc",n:"Government finances",s:"Deficit, debt, ratings, tax",i:[
+ ["Centre's fiscal deficit","4.5% of GDP (FY14); peak 6.5% (FY10, post-crisis)","4.4% (FY26); peak 9.2% (FY21, COVID)","t","t",""],
+ ["Government debt (all levels)","≈84% → 67% of GDP","67% → ≈82% of GDP","u","u","COVID borrowing drove most of the NDA-era rise."],
+ ["Sovereign credit rating","Reached investment grade (Fitch 2006, S&P 2007)","S&P upgrade to BBB (Aug 2025), first in 18 years","t","t",""],
+ ["Centre's tax take","≈10.0% of GDP (FY14)","≈11.4% of GDP (FY26); GST ≈₹22 lakh cr a year","n","n",""]]},
+{k:"agri",n:"Agriculture & farmers",s:"Farm growth, prices, support",i:[
+ ["Farm sector growth","3.5–3.6% a year","3.7–4.5% a year, led by livestock and fisheries","n","n","Estimates differ by source (NITI vs RAS)."],
+ ["Crop output growth","3.4% a year","2.8% a year","u","u",""],
+ ["Minimum support prices","Wheat and paddy MSP up ≈9.1%/yr (≈1% above inflation)","Up ≈4.9%/yr (about level with inflation)","u","u",""],
+ ["Foodgrain production","≈198 → 264 Mt · ≈3.3%/yr","264 → 377 Mt (2025-26) · ≈2.9%/yr","n","t",""],
+ ["Direct support to farmers","2008 loan waiver ≈₹52,000 cr (CAG found irregularities)","PM-KISAN ≈₹4.1 lakh cr paid to ≈9 cr farmers","n","n","Farm income doubling target for 2022 was missed; real cultivation income fell 2013–19."]]},
+{k:"env",n:"Energy & environment",s:"Power, clean energy, emissions, air",i:[
+ ["Power shortage","4.2% energy shortage (FY14)","0.1% (FY25)","n","n",""],
+ ["Clean power capacity","Solar 2.8 GW of 249 GW total (2014)","Solar 165 GW; non-fossil 54% of 552 GW (Jul 2026)","n","n",""],
+ ["CO₂ emissions growth","≈6.7% a year","≈3.5% a year","n","n",""],
+ ["Forest cover","21.2% of land (2013)","21.8% (2023); dense forest shrank 2021–23","t","t","Official count includes plantations."],
+ ["Environmental Performance Index","155 of 178 (2014)","176 of 180 (2024)","u","u","The index changes its method between editions."],
+ ["Delhi air (PM2.5)","≈120 µg/m³ (2013)","97 µg/m³ (2025), lowest recorded","n","t","Different measurement series; still far above safe levels."]]},
+{k:"sec",n:"National security",s:"Terrorism, insurgency, borders, defence",i:[
+ ["Deaths from terrorism & insurgency","≈2,015 a year (2005–13)","≈867 a year (2014–18)","n","n","Violence was already falling from 2009."],
+ ["Jammu & Kashmir deaths","1,739 (2005) → 181 (2013) · −90%","283 (2019) → 92 (2025), lowest in 20+ years","n","u",""],
+ ["Maoist (LWE) violence","≈664 deaths a year; peak 1,180 (2010)","≈310 a year; affected districts 126 → 0 (2026)","n","n","Recent deaths are mostly Maoists killed in operations."],
+ ["Attacks on major cities","Mumbai 26/11 and 8 other mass-casualty urban attacks (≈690 killed)","Attacks mostly in J&K on military targets; Delhi Red Fort blast 2025 (15 killed)","n","n",""],
+ ["Response to cross-border attacks","No military response after 26/11","Surgical strikes 2016, Balakot 2019, Op Sindoor 2025","t","t","Supporters see deterrence; critics see escalation risk."],
+ ["China border","Depsang standoff 2013, no deaths","Doklam 2017; Galwan 2020 (20 soldiers killed); disengagement deal 2024","u","u",""],
+ ["Northeast & Manipur","NE deaths >700 a year (2005)","NE violence down 64–86%, but Manipur ethnic conflict: 306 killed since 2023","t","t",""],
+ ["Defence spending & exports","≈2.3% of GDP; exports ≈₹690 cr (FY14)","≈1.9–2.0% of GDP; exports ₹38,424 cr (FY26)","t","t","Lower budget share, far higher exports."]]}
+];
+const SRC=[["RSF – India","https://rsf.org/en/country/india"],["Freedom House – India 2026","https://freedomhouse.org/country/india/freedom-world/2026"],["V-Dem Democracy Report 2026","https://www.v-dem.net/documents/75/V-Dem_Institute_Democracy_Report_2026_lowres.pdf"],["Access Now shutdowns 2025 (Business Standard)","https://www.business-standard.com/amp/india-news/india-records-65-internet-shutdowns-2025-access-now-report-126033100877_1.html"],["WITS / UN Comtrade trade data","https://wits.worldbank.org/CountryProfile/en/Country/IND/StartYear/1990/EndYear/2024/TradeFlow/Export/Partner/WLD/Product/all-groups/Indicator/XPRT-TRD-VL"],["DGCI&S – India's trade scenario","https://www.dgciskol.gov.in/writereaddata/Downloads/20250819155439A%20Quick%20View%20of%20Indias%20Trade%20Scenario.pdf"],["World Bank ends Doing Business","https://timeline.worldbank.org/content/dam/sites/timeline/docs/2024/17_WBGtodiscontinueDoingBusinessReport_Statement_16September2021.pdf"],["DPIIT FDI factsheet","https://www.dpiit.gov.in/static/uploads/2025/07/03ad41d0e0c3deb434e0520f5dda6df3.pdf"],["RBI net FDI FY26 (Business Standard)","https://www.business-standard.com/economy/news/net-fdi-into-india-rises-sharply-to-7-65-billion-in-fy26-rbi-data-126052201682_1.html"],["India FTA tracker 2026","https://www.india-briefing.com/news/india-fta-tracker-2026-updates-42864.html/"],["World Bank poverty brief","https://documents1.worldbank.org/curated/en/099722104222534584/pdf/IDU-25f34333-d3a3-44ae-8268-86830e3bc5a5.pdf"],["Planning Commission poverty 2011-12","https://www.pib.gov.in/newsite/erelcontent.aspx?relid=97365&reg=48&lang=2"],["PIB welfare factsheet 2026","https://www.pib.gov.in/FactsheetDetails.aspx?Id=150849&reg=48&lang=1"],["Jal Jeevan Mission coverage","https://www.millenniumpost.in/nation/jal-jeevan-mission-rural-tap-water-coverage-reaches-818-says-govt-663490"],["PIB infrastructure 11 years","https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/jun/doc2025611568101.pdf"],["PIB railways track & electrification","https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2209199&reg=48&lang=2"],["Train accident trend (Swarajya)","https://swarajyamag.com/commentary/a-decade-on-the-rails-comparing-train-safety-in-upa-vs-nda"],["IBEF infrastructure 2026","https://www.ibef.org/news/india-s-infrastructure-push-rail-roads-airports-and-urban-connectivity-expand-over-12-years"],["Rural roads fact check (Factly)","https://factly.in/fact-check-has-rural-road-construction-reached-a-record-high-in-the-last-four-years/"],["GDP growth by year","https://statisticstimes.com/economy/country/india-gdp-growth.php"],["CPI inflation (FRED/World Bank)","https://fred.stlouisfed.org/series/FPCPITOTLZGIND"],["GDP per capita, constant $ (World Bank)","https://data.worldbank.org/indicator/NY.GDP.PCAP.KD?locations=IN"],["PLFS 2025","https://www.pib.gov.in/PressReleasePage.aspx?PRID=2246009&lang=1&reg=3"],["Transparency International – India","https://www.transparency.org/en/countries/india"],["Electoral bonds case (SC Observer)","https://www.scobserver.in/cases/association-for-democratic-reforms-electoral-bonds-case-background/"],["RTI and DPDP Act (IFF)","https://internetfreedom.in/section-44-3-and-the-systematic-dismantling-of-the-rti-act-a-fact-check-to-ashwini-vaishnaw/"],["Salaried real wages (Data for India)","https://www.dataforindia.com/the-big-shift/salary-freeze/"],["Nifty levels (Kotak Neo, 29 Sep 2026)","https://www.kotakneo.com/news/market-news/closing-bell-29-september-2026/"],["Demat accounts Aug 2026 (Business Standard)","https://www.business-standard.com/markets/ipo/demat-additions-surge-to-3-3-mn-as-ipo-boom-drives-retail-investors-126090801443_1.html"],["Forex reserves Sep 2026 (Business Standard)","https://www.business-standard.com/economy/news/india-s-forex-reserves-fall-14-89-billion-to-766-billion-rbi-data-126092500941_1.html"],["Rupee record low (Tribune)","https://www.tribuneindia.com/news/business/rupee-falls-to-96-60-in-intraday-trade-settles-at-all-time-low-of-96-52-usd/"],["Current account FY26 (Business Standard)","https://www.business-standard.com/economy/news/india-records-usd-7-1-bn-current-account-surplus-in-q4-fy26-rbi-data-126060800885_1.html"],["RBI revives FCNR swap (Outlook Business)","https://www.outlookbusiness.com/economy-and-policy/rbi-revives-a-crisis-era-tool-can-it-save-the-rupee-again"],["Union Budget 2026-27 analysis (PRS)","https://prsindia.org/files/budget/budget_parliament/2026/Union_Budget_Analysis-2026-27.pdf"],["Government debt (TheGlobalEconomy)","https://www.theglobaleconomy.com/India/Government_debt/"],["Farm growth and incomes (RAS)","https://ras.org.in/articles/342/text/article.html"],["MSP fact check (Factly)","https://factly.in/fact-checking-governments-claims-on-msp-procurement/"],["Foodgrain 2025-26 (Millennium Post)","https://www.millenniumpost.in/business/govt-data-foodgrain-output-to-hit-record-37656-mn-tonnes-in-2025-26-661813"],["Power capacity Jul 2026 (IANS)","https://ianslive.in/indias-total-installed-power-capacity-reach-552-gw-non-fossil-portion-hits-54-pc-share--20260813160437"],["India CO₂ emissions (Worldometer)","https://www.worldometers.info/co2-emissions/india-co2-emissions/"],["EPI 2024 rank (ThePrint)","https://theprint.in/environment/india-ranks-5th-from-bottom-in-environment-performance-index-2024-high-emissions-flagged-again/2128391/"],["SATP cumulative fatalities","https://www.satp.org/satporgtp/countries/india/database/Cumulative_Fatalities.htm"],["J&K insurgency (Wikipedia)","https://en.wikipedia.org/wiki/Insurgency_in_Jammu_and_Kashmir"],["LWE status (PIB)","https://www.pib.gov.in/PressReleasePage.aspx?PRID=2292864&reg=48&lang=1"],["Manipur toll (NE Now)","https://nenow.in/north-east-news/manipur/manipur-violence-claims-306-lives-49-missing-since-2023-ethnic-unrest-home-minister.html"],["Defence budget 2026-27 (PRS)","https://prsindia.org/budgets/parliament/demand-for-grants-2026-27-analysis-defence"],["Defence exports FY26 (PIB)","https://www.pib.gov.in/PressReleasePage.aspx?PRID=2248124&reg=3&lang=1"]];
+const PRE={equal:{},rights:{free:3,gov:3,policy:2,sec:2,agri:2},growth:{infra:3,econ:3,mkt:2,fx:2,fisc:2,trade:2,biz:2,env:1,free:1,gov:1,policy:1,intl:1,agri:1,sec:1},security:{sec:3,intl:3,fx:2,fisc:2,econ:2}};
+let lens="rate";const W={};D.forEach(d=>W[d.k]=2);
+const HINT={rate:"Compares how much each government changed things per year in office, so the longer NDA term is not an advantage. Rankings and indices use their change during each tenure.",level:"Compares where each indicator stood when the government left office (or today for NDA). This favours whoever came later on things that improve over time, and penalises them on things that decline."};
+const pts=(w)=>w==="u"?[1,0]:w==="n"?[0,1]:[.5,.5];
+function dimScore(d){let u=0,n=0;d.i.forEach(r=>{const [a,b]=pts(lens==="rate"?r[4]:r[3]);u+=a;n+=b});return[10*u/d.i.length,10*n/d.i.length]}
+const f1=v=>(Math.round(v*10)/10).toFixed(1);
+function render(){
+ let tu=0,tn=0,tw=0;
+ D.forEach(d=>{const [u,n]=dimScore(d);tu+=u*W[d.k];tn+=n*W[d.k];tw+=W[d.k];
+  const el=document.getElementById("m-"+d.k);el.innerHTML=`<span class="pill pu">UPA ${f1(u)}</span><span class="pill pn">NDA ${f1(n)}</span><span class="chev" aria-hidden="true">›</span>`;
+  d.i.forEach((r,j)=>{const w=lens==="rate"?r[4]:r[3];const c=document.getElementById(`e-${d.k}-${j}`);c.innerHTML=w==="u"?'<span class="pill pu">UPA</span>':w==="n"?'<span class="pill pn">NDA</span>':'<span class="pill pt">Even</span>'})});
+ const U=tw?tu/tw*10:0,N=tw?tn/tw*10:0;
+ document.getElementById("sU").innerHTML=Math.round(U)+"<small> / 100</small>";
+ document.getElementById("sN").innerHTML=Math.round(N)+"<small> / 100</small>";
+ document.getElementById("bU").style.width=U+"%";document.getElementById("bN").style.width=N+"%";
+ const gap=Math.round(Math.abs(U-N));
+ document.getElementById("verdict").textContent=gap<3?"With these settings the two records come out roughly level.":`With these settings ${U>N?"UPA":"NDA"} scores ${gap} points higher. Change the weights or the time lens to see how sensitive that is.`;
+ document.getElementById("lensHint").textContent=HINT[lens];
+ document.getElementById("lensRate").setAttribute("aria-pressed",lens==="rate");document.getElementById("lensLevel").setAttribute("aria-pressed",lens==="level");
+ D.forEach(d=>{document.getElementById("w-"+d.k).value=W[d.k];document.getElementById("o-"+d.k).textContent=["Ignore","Low","Normal","High"][W[d.k]]});
+}
+const wEl=document.getElementById("weights"),dEl=document.getElementById("dims");
+D.forEach((d,x)=>{
+ wEl.insertAdjacentHTML("beforeend",`<label class="w" for="w-${d.k}"><span>${d.n}</span><output id="o-${d.k}"></output><input type="range" id="w-${d.k}" min="0" max="3" step="1"></label>`);
+ const rows=d.i.map((r,j)=>`<tr><td class="ind">${r[0]}</td><td class="v">${r[1]}</td><td class="v">${r[2]}${r[5]?`<span class="note">${r[5]}</span>`:""}</td><td class="e" id="e-${d.k}-${j}"></td></tr>`).join("");
+ dEl.insertAdjacentHTML("beforeend",`<details class="dim"${x===0?" open":""}><summary><span class="name">${d.n}</span><span class="mini" id="m-${d.k}"></span><span class="sub">${d.s} · ${d.i.length} indicators</span></summary><div class="tbl"><table><thead><tr><th>Indicator</th><th style="color:var(--upa)">UPA 2004–14</th><th style="color:var(--nda)">NDA 2014–26</th><th>Edge</th></tr></thead><tbody>${rows}</tbody></table></div></details>`);
+});
+D.forEach(d=>document.getElementById("w-"+d.k).addEventListener("input",e=>{W[d.k]=+e.target.value;render()}));
+document.getElementById("lensRate").onclick=()=>{lens="rate";render()};
+document.getElementById("lensLevel").onclick=()=>{lens="level";render()};
+document.querySelectorAll(".presets button").forEach(b=>b.onclick=()=>{const p=PRE[b.dataset.p];D.forEach(d=>W[d.k]=p[d.k]??(b.dataset.p==="equal"?2:1));render()});
+document.getElementById("src").innerHTML=SRC.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a></li>`).join("");
+document.getElementById("cnt").textContent=D.length+" areas, "+D.reduce((a,d)=>a+d.i.length,0)+" indicators";
+render();
+</script>
+
+</body>
+</html>
